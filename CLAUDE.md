@@ -75,6 +75,13 @@ Allá «el código solo en pantalla, 3–5 líneas, no son tutoriales, nunca dec
   definición**. Cuadro 0 lleno (la primera escena entra sin fundido; el dato ya se ve en el frame 0).
 - Cierre: «¿Te sirvió? Ve más videos en @UniversoCienciaDatos» + «Suscríbete y sigue aprendiendo»
   (componente `Cierre`, dentro de `CierreCurso`). La mitad derecha queda libre para la pantalla final.
+- **Sin destellos entre secciones (regla del dueño):** nada de tarjetas "CAPÍTULO N" ni nada que aparezca menos
+  de ~1.5 s y desaparezca: solo mete ruido. El capítulo se ve en la barra de arriba; cada escena empieza
+  directo con su contenido desde su frame 0 (no esperar a `lineas[0].at` para mostrar algo).
+- **Nada se encima ni salta:** lo que aparece después tiene su espacio reservado desde el inicio (no empuja ni
+  recoloca lo que ya está), nada pisa la franja de subtítulos ni la barra de capítulos, y no hay dos textos
+  grandes a la vez en el mismo lugar. Revisar fotogramas **justo en los cambios** (inicio de cada escena y de
+  cada frase), no solo a la mitad.
 - **Código de colores fijo** (`COL` en `curso.tsx`): dato/entrada = azul · resultado/salida = verde ·
   índice/eje = amarillo · función/método = coral · error/cuidado = morado.
 
@@ -151,7 +158,8 @@ casos reales). C si la serie es una secuencia estricta (cada tema necesita el an
 ## Flujo (en orden, sin saltar pasos)
 1. **Plan:** público y nivel, palabra clave, plantilla (A/B/C), gancho, capítulos con tiempos, escenas 3D (si
    se prestan), estilo visual y música.
-2. **Guion** escena por escena (narración de Alex + qué se ve + código exacto de cada celda).
+2. **Guion** escena por escena (narración de Alex + qué se ve + código exacto de cada celda en `codigo`).
+   Para mostrarlo al dueño: `python3 scripts/ver_guion.py <video>` → `out/guiones/<video>.md`.
 3. **Verificar el código**: ejecutar cada celda y copiar la salida real al guion.
 4. **Esperar aprobación explícita del usuario. No renderizar antes.**
 5. **Notebook**: `notebook.py nuevo` → llenar → `notebook.py revisar`.

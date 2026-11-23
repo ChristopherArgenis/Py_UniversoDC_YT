@@ -10,7 +10,7 @@ import {
 import { Audio } from "@remotion/media";
 import duracionesJson from "../voz-duraciones.json";
 import tiempos from "./tiempos.json";
-import { Bg, Handle, Sfx, Stage, useIn, Words } from "./kit";
+import { Bg, Handle, Sfx, Words } from "./kit";
 import { C, FONT, MONO } from "./theme";
 
 // Motor de videos largos.
@@ -305,30 +305,8 @@ const BarraCapitulos: React.FC<{ plan: Plan; acento: string }> = ({ plan, acento
 
 // ---------- Escenas comunes ----------
 
-/** Tarjeta grande al inicio de un capítulo. */
-export const TituloCapitulo: React.FC<{ n: number; nombre: string; acento?: string }> = ({
-  n,
-  nombre,
-  acento = C.yellow,
-}) => {
-  const p = useIn(0);
-  return (
-    <Stage gap={20}>
-      <div
-        style={{
-          fontFamily: MONO,
-          fontSize: 40,
-          color: acento,
-          opacity: interpolate(p, [0, 0.4], [0, 1], { extrapolateRight: "clamp" }),
-        }}
-      >
-        CAPÍTULO {n}
-      </div>
-      <Words text={nombre} size={120} delay={6} />
-      <Sfx src="whoosh.wav" at={0} volume={0.35} />
-    </Stage>
-  );
-};
+// Sin tarjetas de capítulo entre secciones (regla del dueño): duraban lo que tarda Alex en empezar a hablar
+// (~0.4 s), parpadeaban y solo metían ruido. El capítulo se ve en la barra de arriba; la escena empieza directo.
 
 /**
  * Cierre estándar del canal. Deja libre la mitad derecha para la pantalla

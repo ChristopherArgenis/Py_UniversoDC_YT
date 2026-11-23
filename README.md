@@ -10,7 +10,7 @@ Vienen **sin ejecutar**: córrelos tú, celda por celda, y resuelve los ejercici
 
 | Serie | Carpeta | Videos |
 | --- | --- | --- |
-| Numpy 1D | [`Notebook/Numpy-1D`](Notebook/Numpy-1D) | (en preparación) |
+| Numpy 1D | [`Notebook/Numpy-1D`](Notebook/Numpy-1D) | 1. De listas a arreglos (en preparación) |
 
 ---
 
@@ -24,6 +24,7 @@ las **3 plantillas** y el flujo en [`CLAUDE.md`](CLAUDE.md).
 npm i
 cp src/guiones/plantilla.json src/guiones/01-tema.json                  # 1. guion (plan + narración + código)
 python3 scripts/capitulos.py 01-tema                                     #    duración estimada y capítulos
+python3 scripts/ver_guion.py 01-tema                                     #    guion legible para aprobar
 #   → mostrar el guion y esperar aprobación; luego "aprobado": true
 python3 scripts/notebook.py nuevo Numpy-1D 01-tema "Tema"                # 2. notebook de práctica
 python3 scripts/notebook.py revisar Notebook/Numpy-1D/01-tema.ipynb      #    sin salidas y sin errores

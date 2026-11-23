@@ -1,7 +1,7 @@
 import React from "react";
 import { AbsoluteFill, Sequence, useCurrentFrame } from "remotion";
 import { Card, Sfx, Split, Stage, Words } from "../kit/kit";
-import { leerGuion, TituloCapitulo, VideoLargo, type EscenaProps } from "../kit/largo";
+import { leerGuion, VideoLargo, type EscenaProps } from "../kit/largo";
 import { Aparece, Chip, useP } from "../kit/piezas";
 import { CierreCurso, Nota, PlusDatos, RetoResumen, Seccion, SelloSerie } from "../kit/curso";
 import { AvisoNotebook, Celda, Consola } from "../kit/codigo";
@@ -40,9 +40,12 @@ const Gancho: React.FC<EscenaProps> = ({ lineas }) => {
       </div>
       <Barra label="Lista de Python" seg={4.55} max={4.55} color={C.coral} at={-120} />
       <Barra label="NumPy" seg={0.28} max={4.55} color={C.green} at={-120} />
-      <Sequence from={g2.at} layout="none">
-        <Words text="¿Por *qué?*" size={110} />
-      </Sequence>
+      {/* El espacio de "¿Por qué?" está reservado desde el cuadro 0: al aparecer no empuja nada. */}
+      <div style={{ height: 130 }}>
+        <Sequence from={g2.at} layout="none">
+          <Words text="¿Por *qué?*" size={110} />
+        </Sequence>
+      </div>
       <Nota>Medido con timeit (1,000,000 de enteros) · varía según la computadora</Nota>
       <Sfx src="boom.wav" at={g2.at} volume={0.35} />
     </Stage>
@@ -75,13 +78,10 @@ const Caja: React.FC<{ at: number; children: React.ReactNode; color: string }> =
 );
 
 const Teoria: React.FC<EscenaProps> = ({ lineas }) => {
-  const [t1, t2] = lineas;
+  const [, t2] = lineas;
   return (
     <>
-      <Sequence durationInFrames={t1.at} layout="none">
-        <TituloCapitulo n={1} nombre={guion.escenas[2].capitulo ?? ""} />
-      </Sequence>
-      <Sequence from={t1.at} layout="none">
+      <Sequence layout="none">
         <Split
           left={
             <Stage gap={30}>
@@ -98,7 +98,7 @@ const Teoria: React.FC<EscenaProps> = ({ lineas }) => {
             </Stage>
           }
           right={
-            <Sequence from={t2.at - t1.at} layout="none">
+            <Sequence from={t2.at} layout="none">
               <Stage gap={30}>
                 <Chip bg={C.green}>ARREGLO NUMPY</Chip>
                 <div style={{ display: "flex", gap: 0 }}>
@@ -120,16 +120,13 @@ const Teoria: React.FC<EscenaProps> = ({ lineas }) => {
 
 const Concepto: React.FC<EscenaProps> = ({ lineas }) => {
   const frame = useCurrentFrame();
-  const [k1, k2] = lineas;
+  const [, k2] = lineas;
   const mitad = k2.at + Math.round(k2.frames * 0.45);
   const forma = frame < k2.at ? [6] : frame < mitad ? [3, 6] : [3, 3, 6];
   const etiqueta = frame < k2.at ? "1D · forma (6,)" : frame < mitad ? "2D · forma (3, 6)" : "3D · forma (3, 3, 6)";
   return (
     <>
-      <Sequence durationInFrames={k1.at} layout="none">
-        <TituloCapitulo n={2} nombre={guion.escenas[3].capitulo ?? ""} />
-      </Sequence>
-      <Sequence from={k1.at} layout="none">
+      <Sequence layout="none">
         <AbsoluteFill>
           <Escena3D orbita={10} dist={11} altura={4.5}>
             <Arreglo3D key={forma.join("x")} forma={forma} at={0} ritmo={1.2} />
@@ -146,26 +143,23 @@ const Concepto: React.FC<EscenaProps> = ({ lineas }) => {
 };
 
 const Codigo: React.FC<EscenaProps> = ({ lineas }) => {
-  const [c1, c2, c3] = lineas;
+  const [, c2, c3] = lineas;
   return (
     <>
-      <Sequence durationInFrames={c1.at} layout="none">
-        <TituloCapitulo n={3} nombre={guion.escenas[4].capitulo ?? ""} />
-      </Sequence>
-      <Sequence from={c1.at} layout="none">
+      <Sequence layout="none">
         <Stage>
           <Celda
             lineas={[
               { at: 20, py: "import numpy as np" },
               { at: 50, py: "" },
               { at: 60, py: "precios = np.array([10, 25, 7, 40])" },
-              { at: c2.at - c1.at, py: "dobles = precios * 2   # sin ciclo for" },
-              { at: c2.at - c1.at + 30, py: "print(dobles)" },
+              { at: c2.at, py: "dobles = precios * 2   # sin ciclo for" },
+              { at: c2.at + 30, py: "print(dobles)" },
             ]}
             salida={["[20 50 14 80]"]}
-            atSalida={c2.at - c1.at + 60}
+            atSalida={c2.at + 60}
             resaltar={[3]}
-            resaltarDesde={c2.at - c1.at + 20}
+            resaltarDesde={c2.at + 20}
             ancho={1400}
             size={42}
           />
@@ -198,17 +192,14 @@ const Ejemplo: React.FC<{ at: number; n: number; tipo: string; color: string; ti
 );
 
 const Ejemplos: React.FC<EscenaProps> = ({ lineas }) => {
-  const [e1, e2, e3] = lineas;
+  const [, e2, e3] = lineas;
   return (
     <>
-      <Sequence durationInFrames={e1.at} layout="none">
-        <TituloCapitulo n={4} nombre={guion.escenas[5].capitulo ?? ""} />
-      </Sequence>
-      <Sequence from={e1.at} layout="none">
+      <Sequence layout="none">
         <Stage direction="row" gap={40}>
           <Ejemplo at={0} n={1} tipo="INDUSTRIA" color={C.coral} titulo="Sensores de una fábrica" dato="Miles de lecturas por segundo" codigo="temp[temp > 90]" />
-          <Ejemplo at={e2.at - e1.at} n={2} tipo="CIENCIA" color={C.blue} titulo="Imagen de un telescopio" dato="Brillo de cada pixel (2D)" codigo="img.mean()" />
-          <Ejemplo at={e3.at - e1.at} n={3} tipo="DÍA A DÍA" color={C.yellow} titulo="Una canción" dato="44,100 muestras por segundo" codigo="audio * 0.5" />
+          <Ejemplo at={e2.at} n={2} tipo="CIENCIA" color={C.blue} titulo="Imagen de un telescopio" dato="Brillo de cada pixel (2D)" codigo="img.mean()" />
+          <Ejemplo at={e3.at} n={3} tipo="DÍA A DÍA" color={C.yellow} titulo="Una canción" dato="44,100 muestras por segundo" codigo="audio * 0.5" />
         </Stage>
         <Nota>Ejemplos simplificados</Nota>
       </Sequence>
