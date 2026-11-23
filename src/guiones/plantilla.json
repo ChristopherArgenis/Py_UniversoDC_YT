@@ -1,0 +1,103 @@
+{
+  "_nota": "Video de prueba del motor (no se publica). Sigue la Plantilla A (recomendada). Copia este archivo para empezar un video nuevo.",
+  "id": "plantilla",
+  "titulo": "Plantilla: Arreglos de NumPy",
+  "serie": "Numpy 1D",
+  "plantilla": "A",
+  "notebook": "Notebook/Numpy-1D/00-plantilla.ipynb",
+  "aprobado": false,
+  "musica": "musica/explica.wav",
+  "voz": "alex_nicola",
+  "acento": "#5b8cff",
+  "subtitulos": true,
+  "escenas": [
+    {
+      "id": "gancho",
+      "capitulo": "La pregunta",
+      "pantalla": "Cuadro 0 lleno: '1,000,000 de números' y dos barras: lista de Python vs NumPy. La de NumPy termina mucho antes.",
+      "voz": {
+        "g1": "Sumar un millón de números con una lista de Python tarda unas quince veces más que con NumPy.",
+        "g2": "Misma suma, mismo resultado. ¿Por qué?"
+      },
+      "sub": {
+        "g1": "Sumar 1,000,000 de números con una lista de Python tarda ~15 veces más que con NumPy."
+      }
+    },
+    {
+      "id": "sello",
+      "pantalla": "Sello de la serie con sus temas; se ilumina el actual.",
+      "voz": {
+        "s1": "Esto es Numpy uno de, desde cero."
+      },
+      "sub": {
+        "s1": "Esto es Numpy 1D, desde cero."
+      },
+      "pausa": 0.4
+    },
+    {
+      "id": "teoria",
+      "capitulo": "Teoría",
+      "pantalla": "Lista de Python = cajas sueltas con flechas; arreglo NumPy = bloque continuo de un solo tipo.",
+      "voz": {
+        "t1": "Una lista de Python guarda referencias a objetos sueltos, cada uno en su lugar de la memoria.",
+        "t2": "Un arreglo de NumPy guarda todos los números juntos y del mismo tipo, en un solo bloque."
+      }
+    },
+    {
+      "id": "concepto",
+      "capitulo": "Concepto",
+      "pantalla": "Three.js: el arreglo como bloques 3D; primero una fila (1D), luego una tabla (2D) y luego un cubo (3D).",
+      "voz": {
+        "k1": "A ese bloque le llamamos arreglo. Si es una fila de números, es de una dimensión.",
+        "k2": "Si apilas filas tienes una tabla, y si apilas tablas, un cubo de datos."
+      }
+    },
+    {
+      "id": "codigo",
+      "capitulo": "Código",
+      "pantalla": "Celda de notebook que se escribe línea por línea con la salida real; luego aviso del notebook de Colab.",
+      "voz": {
+        "c1": "En código se ve así. Importamos NumPy y creamos el arreglo a partir de una lista.",
+        "c2": "Multiplicamos todo por dos de una sola vez, sin escribir un ciclo.",
+        "c3": "Todo este código está en el notebook de Colab. El link está en la descripción para que lo pruebes tú."
+      }
+    },
+    {
+      "id": "ejemplos",
+      "capitulo": "Dónde se usa",
+      "pantalla": "Tres tarjetas, una por frase: industria, ciencia y día a día, cada una con su mini gráfica.",
+      "voz": {
+        "e1": "En la industria, una fábrica guarda la temperatura de cada sensor en un arreglo y detecta fallas en milisegundos.",
+        "e2": "En la ciencia, una imagen del telescopio es un arreglo de dos dimensiones con el brillo de cada pixel.",
+        "e3": "Y en tu celular, cada canción es un arreglo con miles de muestras de sonido por segundo."
+      }
+    },
+    {
+      "id": "plus",
+      "capitulo": "Plus: Ciencia de Datos",
+      "pantalla": "Chip 'Plus · Ciencia de Datos'. Tabla de pandas que se 'abre' y muestra que cada columna es un arreglo de NumPy.",
+      "voz": {
+        "p1": "Plus de ciencia de datos: cada columna de una tabla de pandas es, por dentro, un arreglo de NumPy."
+      }
+    },
+    {
+      "id": "reto",
+      "capitulo": "Reto y resumen",
+      "pantalla": "Reto con código; luego tres tarjetas de resumen.",
+      "voz": {
+        "r1": "Tu reto: crea un arreglo con los números del uno al diez y súmale cinco a todos.",
+        "r2": "En resumen: un arreglo guarda números juntos, del mismo tipo, y opera con todos a la vez."
+      }
+    },
+    {
+      "id": "cierre",
+      "capitulo": "Cierre",
+      "pantalla": "Próximo video; luego el cierre estándar con la mitad derecha libre para la pantalla final.",
+      "voz": {
+        "z1": "En el próximo video: cómo leer y cortar un arreglo con índices.",
+        "z2": "¿Te sirvió? Ve más videos en Universo Ciencia de Datos, y suscríbete."
+      },
+      "min": 14
+    }
+  ]
+}

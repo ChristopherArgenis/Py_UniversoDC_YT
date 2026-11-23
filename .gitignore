@@ -1,0 +1,13 @@
+node_modules
+dist
+.DS_Store
+.env
+__pycache__
+models
+.ipynb_checkpoints/
+
+# Videos y miniaturas renderizados (se entregan aparte)
+out
+
+# Muestras de voz para comparar perfiles (se generan con scripts/muestra_voz.py)
+muestras/
