@@ -1,0 +1,326 @@
+{
+  "_nota": "Numpy 1D · Video 1. Plantilla A con 6 bloques (Concepto → Código) en el orden que dio el dueño. Salidas verificadas con NumPy 2.5.3 (ver series/numpy-1d.md).",
+  "id": "n01-listas-arreglos",
+  "titulo": "De listas a arreglos | Numpy 1D",
+  "serie": "Numpy 1D",
+  "plantilla": "A",
+  "notebook": "Notebook/Numpy-1D/01-listas-a-arreglos.ipynb",
+  "aprobado": true,
+  "musica": "musica/explica.wav",
+  "voz": "alex_nicola",
+  "acento": "#5b8cff",
+  "subtitulos": true,
+  "escenas": [
+    {
+      "id": "gancho",
+      "capitulo": "La pregunta",
+      "pantalla": "Cuadro 0 lleno, dos columnas ya escritas. Izquierda (coral): lista [1, 2, 3] * 2 → [1, 2, 3, 1, 2, 3]. Derecha (verde): np.array([1, 2, 3]) * 2 → [2 4 6]. En g2 se resalta la salida de cada lado. En g3 aparece abajo 'De listas a arreglos' (espacio reservado desde el inicio).",
+      "codigo": [
+        "lista * 2   →  [1, 2, 3, 1, 2, 3]",
+        "arreglo * 2 →  [2 4 6]"
+      ],
+      "voz": {
+        "g1": "Mismos números. Misma operación: multiplicar por dos.",
+        "g2": "La lista de Python se repite. El arreglo de NumPy multiplica cada número.",
+        "g3": "Hoy vas a entender por qué, y vas a crear tus primeros arreglos."
+      }
+    },
+    {
+      "id": "sello",
+      "pantalla": "Sello 'NUMPY 1D' con el video 1 iluminado ('De listas a arreglos').",
+      "voz": {
+        "s1": "Esto es Numpy uno de: NumPy desde cero."
+      },
+      "sub": {
+        "s1": "Esto es Numpy 1D: NumPy desde cero."
+      },
+      "pausa": 0.4
+    },
+    {
+      "id": "teoria",
+      "capitulo": "¿Qué es NumPy?",
+      "pantalla": "t1: 'NumPy = Numerical Python'. t2–t3 (Three.js): izquierda, cubos sueltos flotando en desorden con flechas (lista: objetos sueltos); derecha, los mismos números como una fila continua de cubos del mismo color (arreglo). La cámara gira despacio. t4: base 'NumPy' con tres bloques encima: pandas · Matplotlib · scikit-learn (solo texto, sin logos).",
+      "voz": {
+        "t1": "NumPy significa Python numérico. Es la librería para trabajar con muchos números a la vez.",
+        "t2": "Una lista de Python guarda cada número como un objeto suelto, en distintos lugares de la memoria.",
+        "t3": "Un arreglo de NumPy los guarda juntos, uno detrás de otro, y todos del mismo tipo.",
+        "t4": "Por eso es más rápido, y por eso pandas, Matplotlib y scikit-learn están construidos encima de NumPy."
+      }
+    },
+    {
+      "id": "primero",
+      "capitulo": "Tu primer arreglo",
+      "pantalla": "Celda 1 se escribe línea por línea con su salida. Luego celda 2. En a5 se resalta 'arr.shape' y aparece una fila de 5 casillas con índices 0–4 debajo; en a6 se iluminan la casilla 0 y la -1. En a7, AvisoNotebook.",
+      "codigo": [
+        "import numpy as np",
+        "temperaturas = [21, 23, 19, 25, 22]",
+        "arr = np.array(temperaturas)",
+        "print(arr)                      # [21 23 19 25 22]",
+        "---",
+        "print(type(arr))                # <class 'numpy.ndarray'>",
+        "print(arr.shape, arr.ndim, arr.size)   # (5,) 1 5",
+        "print(arr[0], arr[-1])          # 21 22"
+      ],
+      "voz": {
+        "a1": "Primero importamos NumPy con el alias n p. Así lo escribe todo el mundo.",
+        "a2": "Tenemos una lista de temperaturas. Con n p punto array la convertimos en un arreglo.",
+        "a3": "Al imprimirlo, fíjate: no hay comas. Así reconoces un arreglo.",
+        "a4": "Su tipo es n d array, que significa arreglo de n dimensiones.",
+        "a5": "Shape nos da la forma: cinco elementos en una sola dimensión. Por eso esta serie se llama Numpy uno de.",
+        "a6": "Y como en las listas, el primer elemento es el índice cero, y el último, el menos uno.",
+        "a7": "Todo el código de este video está en un notebook de Colab. El link está en la descripción, para que lo pruebes tú."
+      },
+      "sub": {
+        "a1": "Primero importamos NumPy con el alias np. Así lo escribe todo el mundo.",
+        "a2": "Tenemos una lista de temperaturas. Con np.array la convertimos en un arreglo.",
+        "a4": "Su tipo es ndarray, que significa arreglo de n dimensiones.",
+        "a5": "shape nos da la forma: 5 elementos en una sola dimensión. Por eso esta serie se llama Numpy 1D.",
+        "a6": "Y como en las listas, el primer elemento es el índice 0, y el último, el -1."
+      },
+      "pausa": 1.2
+    },
+    {
+      "id": "diferencias",
+      "capitulo": "Arreglos vs listas",
+      "pantalla": "l1–l2: celda con lista + [10] vs arr + 10 y sus salidas; chip 'operación vectorizada'. l3: tarjeta Cuidado con np.array([1, \"dos\", 3.0]) → ['1' 'dos' '3.0'] (todo se volvió texto). l4–l5: dos pares de barras medidas: tiempo 5.09 ms vs 0.44 ms y memoria ~36 MB vs 8 MB. Nota: 'Medido en el notebook · varía según la computadora'.",
+      "codigo": [
+        "lista = [1, 2, 3]",
+        "arr = np.array([1, 2, 3])",
+        "print(lista + [10])     # [1, 2, 3, 10]",
+        "print(arr + 10)         # [11 12 13]",
+        "---",
+        "print(np.array([1, \"dos\", 3.0]))   # ['1' 'dos' '3.0']"
+      ],
+      "voz": {
+        "l1": "Ahora, las diferencias. Con una lista, el más une listas. Con un arreglo, suma el número a cada elemento.",
+        "l2": "Eso se llama operación vectorizada: una sola línea, sin escribir un ciclo for.",
+        "l3": "Segunda diferencia: un arreglo solo guarda un tipo. Si mezclas números y texto, NumPy convierte todo a texto.",
+        "l4": "Tercera: velocidad y memoria. Sumar un millón de números fue unas doce veces más rápido con NumPy.",
+        "l5": "Y el arreglo ocupó ocho megas, contra unos treinta y seis de la lista."
+      },
+      "sub": {
+        "l1": "Ahora, las diferencias. Con una lista, el + une listas. Con un arreglo, suma el número a cada elemento.",
+        "l4": "Tercera: velocidad y memoria. Sumar 1,000,000 de números fue ~12 veces más rápido con NumPy.",
+        "l5": "Y el arreglo ocupó 8 MB, contra ~36 MB de la lista."
+      }
+    },
+    {
+      "id": "tipos",
+      "capitulo": "Tipos de datos",
+      "pantalla": "Celda con los 4 arreglos y su salida. d4 (Three.js): cada tipo como una barra de bloques de 1 byte: int8 y bool = 1 bloque, int64 y float64 = 8 bloques; la cámara gira. d5: se resalta 'a.itemsize, a.nbytes' → 8 24 con la cuenta 3 × 8 = 24.",
+      "codigo": [
+        "a = np.array([1, 2, 3])",
+        "b = np.array([1.5, 2, 3])",
+        "c = np.array([True, False, True])",
+        "d = np.array([\"sol\", \"luna\"])",
+        "print(a.dtype, b.dtype, c.dtype, d.dtype)   # int64 float64 bool <U4",
+        "print(b)                     # [1.5 2.  3. ]",
+        "print(a.itemsize, a.nbytes)  # 8 24"
+      ],
+      "voz": {
+        "d1": "Cada arreglo tiene un d type: el tipo de dato de todos sus elementos.",
+        "d2": "Con enteros es int sesenta y cuatro. Con un solo decimal, todo el arreglo pasa a float sesenta y cuatro.",
+        "d3": "También hay booleanos, de verdadero y falso, y texto, que NumPy marca con una U.",
+        "d4": "El número del tipo son bits. Int sesenta y cuatro usa ocho bytes por número; int ocho, solo uno.",
+        "d5": "Item size te dice los bytes de cada elemento, y n bytes, el total del arreglo."
+      },
+      "sub": {
+        "d1": "Cada arreglo tiene un dtype: el tipo de dato de todos sus elementos.",
+        "d2": "Con enteros es int64. Con un solo decimal, todo el arreglo pasa a float64.",
+        "d3": "También hay booleanos (True y False) y texto, que NumPy marca con una U.",
+        "d4": "El número del tipo son bits. int64 usa 8 bytes por número; int8, solo 1.",
+        "d5": "itemsize te dice los bytes de cada elemento, y nbytes, el total del arreglo."
+      }
+    },
+    {
+      "id": "astype",
+      "capitulo": "Cambiar el tipo",
+      "pantalla": "Celda 1 con precios: astype(int) → [19  5  3] (se tachan los decimales, chip 'corta, no redondea'), luego round → [20  6  4], luego textos → [11 21 31]. c5: tarjeta Cuidado con la celda int16 → int8 y la salida [100 -56  44], el -56 resaltado en morado.",
+      "codigo": [
+        "precios = np.array([19.99, 5.50, 3.75])",
+        "print(precios.astype(int))             # [19  5  3]",
+        "print(np.round(precios).astype(int))   # [20  6  4]",
+        "textos = np.array([\"10\", \"20\", \"30\"])",
+        "print(textos.astype(int) + 1)          # [11 21 31]",
+        "---",
+        "x = np.array([100, 200, 300], dtype=np.int16)",
+        "print(x.astype(np.int8))               # [100 -56  44]"
+      ],
+      "voz": {
+        "c1": "Para cambiar el tipo usamos as type. Ojo: no modifica el arreglo, crea uno nuevo.",
+        "c2": "Si pasas precios con decimales a enteros, NumPy no redondea: corta. Diecinueve noventa y nueve queda en diecinueve.",
+        "c3": "Si quieres redondear, primero n p punto round, y luego as type.",
+        "c4": "Muy útil con datos reales: números que llegan como texto se convierten con as type, y ya puedes operar.",
+        "c5": "Cuidado: si el tipo es muy chico, el número no cabe. Doscientos en int ocho se vuelve menos cincuenta y seis, sin ningún aviso."
+      },
+      "sub": {
+        "c1": "Para cambiar el tipo usamos astype. Ojo: no modifica el arreglo, crea uno nuevo.",
+        "c2": "Si pasas precios con decimales a enteros, NumPy no redondea: corta. 19.99 queda en 19.",
+        "c3": "Si quieres redondear, primero np.round, y luego astype.",
+        "c4": "Muy útil con datos reales: números que llegan como texto se convierten con astype, y ya puedes operar.",
+        "c5": "Cuidado: si el tipo es muy chico, el número no cabe. 200 en int8 se vuelve -56, sin ningún aviso."
+      },
+      "pausa": 1.2
+    },
+    {
+      "id": "fabrica",
+      "capitulo": "Funciones fábrica",
+      "pantalla": "Una celda que crece con una línea por frase y su salida al lado. f3–f4: comparación visual en una recta numérica: arange marca puntos cada 2 (el 10 queda fuera, tachado); linspace reparte 5 puntos de 0 a 1 incluyendo el 1. f5: diez dados que caen y muestran 1 5 4 3 3 6 1 5 2 1.",
+      "codigo": [
+        "print(np.zeros(5))            # [0. 0. 0. 0. 0.]",
+        "print(np.ones(3))             # [1. 1. 1.]",
+        "print(np.full(4, 7))          # [7 7 7 7]",
+        "print(np.arange(0, 10, 2))    # [0 2 4 6 8]",
+        "print(np.linspace(0, 1, 5))   # [0.   0.25 0.5  0.75 1.  ]",
+        "rng = np.random.default_rng(42)",
+        "print(rng.integers(1, 7, size=10))   # [1 5 4 3 3 6 1 5 2 1]"
+      ],
+      "voz": {
+        "f1": "No siempre tienes una lista. NumPy puede fabricar arreglos por ti.",
+        "f2": "Zeros y ones crean arreglos de ceros y de unos. Fíjate en el punto: por defecto son decimales. Y full lo llena con el valor que quieras.",
+        "f3": "A range es como el range de Python: inicio, fin y paso. El fin no se incluye.",
+        "f4": "Lin space es distinto: le dices cuántos números quieres, y los reparte parejo, incluyendo el final.",
+        "f5": "Y para datos aleatorios, un generador con semilla. Aquí, diez tiradas de un dado."
+      },
+      "sub": {
+        "f2": "zeros y ones crean arreglos de ceros y de unos. Fíjate en el punto: por defecto son decimales. Y full lo llena con el valor que quieras.",
+        "f3": "arange es como el range de Python: inicio, fin y paso. El fin no se incluye.",
+        "f4": "linspace es distinto: le dices cuántos números quieres, y los reparte parejo, incluyendo el final.",
+        "f5": "Y para datos aleatorios, un generador con semilla. Aquí, 10 tiradas de un dado."
+      },
+      "pausa": 1.2
+    },
+    {
+      "id": "graficar",
+      "capitulo": "Graficar arreglos",
+      "pantalla": "Split: izquierda la celda; derecha la gráfica dibujada por nosotros (Plano + Curva) que se traza de izquierda a derecha en p3. p4: segunda celda y un histograma de 20 barras que crecen (conteos reales del notebook).",
+      "codigo": [
+        "import matplotlib.pyplot as plt",
+        "x = np.linspace(0, 2 * np.pi, 100)",
+        "y = np.sin(x)",
+        "plt.plot(x, y)",
+        "plt.show()",
+        "---",
+        "rng = np.random.default_rng(7)",
+        "alturas = rng.normal(170, 8, size=1000)",
+        "plt.hist(alturas, bins=20)",
+        "plt.show()"
+      ],
+      "datos": {
+        "hist_conteos": [
+          1,
+          2,
+          3,
+          8,
+          20,
+          38,
+          40,
+          75,
+          86,
+          101,
+          144,
+          130,
+          91,
+          92,
+          67,
+          39,
+          28,
+          18,
+          11,
+          6
+        ],
+        "hist_rango_cm": [
+          144.0,
+          190.6
+        ]
+      },
+      "voz": {
+        "p1": "Lo mejor: estos arreglos se grafican directo.",
+        "p2": "Con lin space creamos cien puntos entre cero y dos pi, y n p punto sin calcula el seno de todos a la vez.",
+        "p3": "plt punto plot recibe los dos arreglos, y listo: una onda.",
+        "p4": "Y con datos aleatorios: mil estaturas con distribución normal, y un histograma con plt punto hist."
+      },
+      "sub": {
+        "p2": "Con linspace creamos 100 puntos entre 0 y 2π, y np.sin calcula el seno de todos a la vez.",
+        "p3": "plt.plot recibe los dos arreglos, y listo: una onda.",
+        "p4": "Y con datos aleatorios: 1,000 estaturas con distribución normal, y un histograma con plt.hist."
+      },
+      "pausa": 1.2
+    },
+    {
+      "id": "ejemplos",
+      "capitulo": "Dónde se usa",
+      "pantalla": "Tres tarjetas que entran una por frase (espacio reservado, nada se mueve). 1 INDUSTRIA: sensor °C → °F, código 'temp_c * 9 / 5 + 32' → [70.7  73.4  67.64 77.18]. 2 CIENCIA: caída libre, 't = np.linspace(0, 2, 5)' y 'd = 4.9 * t**2' → [0. 1.225 4.9 11.025 19.6] con una pelota que cae marcando cada punto. 3 DÍA A DÍA: pasos de la semana, 'pasos.sum()' → 56550 y 'pasos >= 10000' → 2 días en verde. Nota: 'Ejemplos simplificados'.",
+      "codigo": [
+        "temp_c = np.array([21.5, 23.0, 19.8, 25.1])",
+        "print(temp_c * 9 / 5 + 32)    # [70.7  73.4  67.64 77.18]",
+        "---",
+        "t = np.linspace(0, 2, 5)",
+        "print(4.9 * t**2)             # [ 0.     1.225  4.9   11.025 19.6  ]",
+        "---",
+        "pasos = np.array([8200, 5400, 10350, 7600, 12000, 3900, 9100])",
+        "print(pasos.sum())            # 56550",
+        "print(pasos >= 10000)         # [False False  True False  True False False]"
+      ],
+      "voz": {
+        "e1": "En la industria: un sensor manda temperaturas en grados Celsius. Con una línea las pasas todas a Fahrenheit.",
+        "e2": "En la ciencia: con lin space defines los tiempos, y calculas cuánto ha caído un objeto en cada instante.",
+        "e3": "Y en tu día a día: los pasos de tu semana. Con sum sabes el total, y con una comparación, qué días llegaste a diez mil."
+      },
+      "sub": {
+        "e2": "En la ciencia: con linspace defines los tiempos, y calculas cuánto ha caído un objeto en cada instante.",
+        "e3": "Y en tu día a día: los pasos de tu semana. Con sum sabes el total, y con una comparación, qué días llegaste a 10,000."
+      },
+      "pausa": 1.2
+    },
+    {
+      "id": "plus",
+      "capitulo": "Plus: Ciencia de Datos",
+      "pantalla": "Chip 'PLUS · CIENCIA DE DATOS'. q1: tabla de pandas (precio, cantidad) y la columna 'cantidad' se separa y se convierte en un arreglo con su dtype. q2: dos barras: 1,000,000 de enteros en int64 = 8 MB vs int8 = 1 MB. q3: checklist de limpieza con 'revisar tipos' marcado.",
+      "codigo": [
+        "type(df[\"cantidad\"].to_numpy())                # <class 'numpy.ndarray'>",
+        "np.zeros(1_000_000, dtype=np.int64).nbytes      # 8000000",
+        "np.zeros(1_000_000, dtype=np.int8).nbytes       # 1000000"
+      ],
+      "voz": {
+        "q1": "Plus de ciencia de datos: cada columna de una tabla de pandas es, por dentro, un arreglo de NumPy, con su propio d type.",
+        "q2": "Con millones de filas el tipo importa: un millón de enteros ocupa ocho megas en int sesenta y cuatro, y solo uno en int ocho.",
+        "q3": "Por eso, al limpiar datos, revisar y cambiar tipos es de lo primero que se hace."
+      },
+      "sub": {
+        "q1": "Plus de Ciencia de Datos: cada columna de una tabla de pandas es, por dentro, un arreglo de NumPy, con su propio dtype.",
+        "q2": "Con millones de filas el tipo importa: 1,000,000 de enteros ocupa 8 MB en int64, y solo 1 MB en int8."
+      }
+    },
+    {
+      "id": "reto",
+      "capitulo": "Reto y resumen",
+      "pantalla": "Reto con la línea de código; sticker 'Resuélvelo en el notebook de Colab · link en la descripción'. Luego 3 tarjetas de resumen.",
+      "codigo": [
+        "x = np.linspace(0, 10, 50).astype(int)",
+        "plt.plot(x)      # ¿por qué sale en escalones?"
+      ],
+      "voz": {
+        "r1": "Tu reto: crea cincuenta números entre cero y diez con lin space, conviértelos a enteros y grafícalos.",
+        "r2": "¿Por qué la gráfica sale en escalones? Déjalo en los comentarios, y resuélvelo en el notebook.",
+        "r3": "En resumen: un arreglo guarda datos juntos y del mismo tipo, opera con todos a la vez, y se fabrica y se grafica con una línea."
+      },
+      "sub": {
+        "r1": "Tu reto: crea 50 números entre 0 y 10 con linspace, conviértelos a enteros y grafícalos."
+      }
+    },
+    {
+      "id": "cierre",
+      "capitulo": "Cierre",
+      "pantalla": "Próximo video de la serie (pendiente: lo define el dueño) con AvisoNotebook abajo; luego el cierre estándar con la mitad derecha libre para la pantalla final.",
+      "voz": {
+        "z1": "En el próximo video de Numpy uno de seguimos con los arreglos. Te espero.",
+        "z2": "¿Te sirvió? Ve más videos en Universo Ciencia de Datos, y suscríbete."
+      },
+      "sub": {
+        "z1": "En el próximo video de Numpy 1D seguimos con los arreglos. Te espero."
+      },
+      "min": 14
+    }
+  ]
+}
