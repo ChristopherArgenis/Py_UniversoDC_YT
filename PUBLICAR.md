@@ -42,7 +42,7 @@ Plantilla por video:
 **Alternativas:** NumPy desde cero: de listas a arreglos | Numpy 1D · Tu primer arreglo de NumPy | Numpy 1D
 **Plantilla:** A (6 bloques Concepto → Código)
 **Video:** `out/N01-ListasArreglos.mp4` (5:18, 1920×1080)
-**Miniatura:** `Mini-N01-ListasArreglos` → "[1,2,3] × 2 = [1,2,3,1,2,3]" + "¿?" (el resultado sorprendente del gancho; cubo 3D desenfocado al fondo)
+**Miniatura:** `Mini-N01-ListasArreglos` → "1 MILLÓN DE NÚMEROS": LISTA [1, 2, 3] 36 MB (rojo) → NUMPY [1 2 3] 8 MB (verde). Dato del video (01:24).
 **Notebook:** Notebook/Numpy-1D/01-listas-a-arreglos.ipynb (¿en main? **NO todavía: hacer merge antes de publicar**)
 **Descripción:** `videos/n01-listas-arreglos/descripcion.txt`
 

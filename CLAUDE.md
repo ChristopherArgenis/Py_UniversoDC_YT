@@ -187,7 +187,9 @@ casos reales). C si la serie es una secuencia estricta (cada tema necesita el an
 4. **Texto mínimo y legible:** 3 a 5 palabras máximo, Poppins 900 grande, con contorno o sombra (`CONTORNO`).
 5. **Alto contraste y limpieza:** fondo oscuro y desenfocado detrás de un frente brillante; paleta de 2–3 colores
    (azul noche + blanco + amarillo; coral solo como acento).
-6. **Coherente con el video:** lo que promete se ve y se resuelve en los primeros segundos (normalmente es el gancho).
+6. **Coherente con el video:** lo que promete se ve y se resuelve en el video (mejor si es en los primeros minutos).
+   Ligada al **tema del título**: una comparación que muestre el cambio que promete el título (ej. lista 36 MB en rojo →
+   arreglo 8 MB en verde para «De listas a arreglos»), no un detalle suelto que no lo explica. Cifras con su contexto ("1 MILLÓN").
 7. **Identidad de serie:** mismo fondo, chip con el nombre de la serie arriba a la izquierda, misma tipografía y
    encuadre en todos los episodios (`FondoNumpy1D` en `src/miniaturas/Miniaturas.tsx`).
 La esquina inferior derecha la tapa la duración: nada importante ahí.

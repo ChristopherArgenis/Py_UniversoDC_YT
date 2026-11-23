@@ -47,7 +47,7 @@ const CONTORNO: React.CSSProperties = {
 /** Fondo común de la serie Numpy 1D: cubos azules desenfocados + resplandor detrás del foco. */
 const FondoNumpy1D: React.FC<{ children: React.ReactNode }> = ({ children }) => (
   <AbsoluteFill style={{ backgroundColor: C.bg, overflow: "hidden" }}>
-    <AbsoluteFill style={{ filter: "blur(5px)", opacity: 0.55 }}>
+    <AbsoluteFill style={{ filter: "blur(6px)", opacity: 0.4 }}>
       <Escena3D width={1280} height={720} orbita={0} dist={12} altura={4} anguloInicial={-32} objetivo={[0, 0, 0]}>
         <group position={[3.2, -1.6, 0]}>
           <Arreglo3D forma={[3, 3, 3]} at={-200} lado={1.3} hueco={0.12} valores={() => 0} />
@@ -75,54 +75,29 @@ const FondoNumpy1D: React.FC<{ children: React.ReactNode }> = ({ children }) => 
   </AbsoluteFill>
 );
 
+/** Una columna de la comparación: chip, cómo se ve el dato y su memoria en grande. */
+const ColumnaMemoria: React.FC<{ chip: string; codigo: string; mb: string; color: string }> = ({ chip, codigo, mb, color }) => (
+  <div style={{ width: 520, display: "flex", flexDirection: "column", alignItems: "center", gap: 12 }}>
+    <div style={{ fontFamily: FONT, fontWeight: 900, fontSize: 46, color: C.bg, background: color, borderRadius: 14, padding: "4px 26px" }}>{chip}</div>
+    <div style={{ fontFamily: FONT, fontWeight: 900, fontSize: 86, color: C.ink, lineHeight: 1.1, whiteSpace: "pre", ...CONTORNO, WebkitTextStroke: `8px ${C.bg}` }}>{codigo}</div>
+    <div style={{ fontFamily: FONT, fontWeight: 900, fontSize: 150, color, lineHeight: 1, whiteSpace: "nowrap", ...CONTORNO }}>{mb}</div>
+  </div>
+);
+
+// Foco: la memoria de una lista vs un arreglo (lo que dice el título, sin repetirlo). Datos del video (01:24).
 export const MiniN01: React.FC = () => (
   <FondoNumpy1D>
-    <AbsoluteFill style={{ padding: "110px 0 0 70px", display: "flex", flexDirection: "column", justifyContent: "center", gap: 6 }}>
-      <div style={{ fontFamily: FONT, fontWeight: 900, fontSize: 168, lineHeight: 1.05, color: C.ink, ...CONTORNO }}>
-        [1,2,3] × 2
+    <div style={{ position: "absolute", top: 50, left: 0, right: 0, display: "flex", justifyContent: "center" }}>
+      <div style={{ fontFamily: FONT, fontWeight: 900, fontSize: 48, color: C.ink, letterSpacing: 2, ...CONTORNO, WebkitTextStroke: `6px ${C.bg}`, marginLeft: 260 }}>
+        1 MILLÓN DE NÚMEROS
       </div>
-      <div style={{ display: "flex", alignItems: "center", gap: 26 }}>
-        <div style={{ fontFamily: FONT, fontWeight: 900, fontSize: 168, lineHeight: 1.05, color: C.ink, ...CONTORNO }}>=</div>
-        <div
-          style={{
-            fontFamily: FONT,
-            fontWeight: 900,
-            fontSize: 112,
-            lineHeight: 1,
-            color: C.bg,
-            background: C.yellow,
-            borderRadius: 26,
-            padding: "14px 30px 22px",
-            boxShadow: `0 0 70px ${C.yellow}66, 0 12px 0 #0008`,
-            rotate: "-2deg",
-          }}
-        >
-          [1,2,3,1,2,3]
-        </div>
-      </div>
-    </AbsoluteFill>
-    <div
-      style={{
-        position: "absolute",
-        top: 170,
-        right: 80,
-        width: 190,
-        height: 190,
-        borderRadius: 95,
-        background: C.coral,
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        fontFamily: FONT,
-        fontWeight: 900,
-        fontSize: 120,
-        color: C.ink,
-        rotate: "10deg",
-        boxShadow: "0 12px 0 #0008",
-        ...{ WebkitTextStroke: `6px ${C.bg}`, paintOrder: "stroke fill" },
-      }}
-    >
-      ¿?
     </div>
+    <AbsoluteFill style={{ padding: "120px 40px 40px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "center", gap: 10 }}>
+      <ColumnaMemoria chip="LISTA" codigo="[1, 2, 3]" mb="36 MB" color={C.coral} />
+      <svg width={140} height={115} viewBox="0 0 170 140" style={{ filter: "drop-shadow(0 8px 0 #0008)" }}>
+        <path d="M10 50 H100 V15 L160 70 L100 125 V90 H10 Z" fill={C.ink} stroke={C.bg} strokeWidth={8} strokeLinejoin="round" />
+      </svg>
+      <ColumnaMemoria chip="NUMPY" codigo="[1  2  3]" mb="8 MB" color={C.green} />
+    </AbsoluteFill>
   </FondoNumpy1D>
 );

@@ -53,7 +53,7 @@ Guion: `src/guiones/n01-listas-arreglos.json` (aprobado). Video: `src/videos/N01
 2. NumPy desde cero: de listas a arreglos | Numpy 1D (49)
 3. Tu primer arreglo de NumPy | Numpy 1D (37)
 
-**Miniatura:** chip "NUMPY 1D"; foco único `[1,2,3] × 2 = [1,2,3,1,2,3]` + "¿?"; cubo 3D azul desenfocado al fondo.
+**Miniatura (elegida por el dueño):** lista `[1, 2, 3]` con **36 MB** en rojo → flecha → arreglo NumPy `[1 2 3]` con **8 MB** en verde, "1 MILLÓN DE NÚMEROS" arriba. Va con el título (de listas a arreglos) y el dato sale en el video (01:24).
 
 **Pendiente de decidir:** el "próximo video" del cierre (depende del contenido del video 2).
 
