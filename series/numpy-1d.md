@@ -1,6 +1,6 @@
 # Serie: Numpy 1D
 
-**Estado:** video 1 con guion propuesto, **pendiente de aprobación**. Nada se renderiza hasta aprobar cada guion.
+**Estado:** video 1 aprobado y renderizado (5:18); falta merge a `main` y publicar. Nada se renderiza hasta aprobar cada guion.
 Los demás videos: el dueño define su contenido (como hizo con el 1); aquí se van agregando.
 
 ## Idea
@@ -18,11 +18,11 @@ que son la base de pandas, Matplotlib y scikit-learn. Cada video sigue el conten
 ## Videos
 | # | Título | Palabra clave | Notebook | Estado |
 |---|---|---|---|---|
-| 1 | De listas a arreglos \| Numpy 1D | numpy arreglos / numpy array | `01-listas-a-arreglos.ipynb` | guion por aprobar |
+| 1 | De listas a arreglos \| Numpy 1D | numpy arreglos / numpy array | `01-listas-a-arreglos.ipynb` | renderizado · por publicar |
 | 2 | (el dueño define el contenido) | | | |
 
 ## Video 1 · De listas a arreglos
-Guion: `src/guiones/n01-listas-arreglos.json` (única fuente del texto). Duración estimada ~5–6 min.
+Guion: `src/guiones/n01-listas-arreglos.json` (aprobado). Video: `src/videos/N01ListasArreglos.tsx` → 5:18. Título elegido: «De listas a arreglos | Numpy 1D».
 
 **Contenido del dueño → capítulos del video** (mismo orden):
 | Contenido del dueño | Capítulo | Qué se ve |

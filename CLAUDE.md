@@ -163,7 +163,8 @@ casos reales). C si la serie es una secuencia estricta (cada tema necesita el an
 3. **Verificar el código**: ejecutar cada celda y copiar la salida real al guion.
 4. **Esperar aprobación explícita del usuario. No renderizar antes.**
 5. **Notebook**: `notebook.py nuevo` → llenar → `notebook.py revisar`.
-6. Voz → composición Remotion → revisar fotogramas clave (`npx remotion still`), incluidas las escenas 3D.
+6. Voz → composición Remotion → revisar fotogramas en los cambios con
+   `python3 scripts/revisar_fotogramas.py <video> <Composición> [escenas…]` (hojas en `out/revision/`), incluidas las 3D.
 7. Render final (`scripts/render.py`) + `ffprobe` (1920×1080, duración esperada).
 8. **Miniatura 1280×720**: máximo 3–4 palabras grandes, distintas al título, alto contraste, un solo foco visual
    (un objeto 3D funciona muy bien), legible en pequeño. Chip con el nombre de la serie.

@@ -10,7 +10,7 @@ Vienen **sin ejecutar**: córrelos tú, celda por celda, y resuelve los ejercici
 
 | Serie | Carpeta | Videos |
 | --- | --- | --- |
-| Numpy 1D | [`Notebook/Numpy-1D`](Notebook/Numpy-1D) | 1. De listas a arreglos (en preparación) |
+| Numpy 1D | [`Notebook/Numpy-1D`](Notebook/Numpy-1D) | 1. [De listas a arreglos](Notebook/Numpy-1D/01-listas-a-arreglos.ipynb) |
 
 ---
 

@@ -3,7 +3,8 @@ import { FPS, H, W } from "./kit/theme";
 import { planificar } from "./kit/largo";
 import { MINI_H, MINI_W } from "./kit/miniatura";
 import { Plantilla, PLANTILLA } from "./videos/Plantilla";
-import { MiniPlantilla } from "./miniaturas/Miniaturas";
+import { N01, N01ListasArreglos } from "./videos/N01ListasArreglos";
+import { MiniN01, MiniPlantilla } from "./miniaturas/Miniaturas";
 
 // Cada video largo: <Composition id="NN-Nombre"> con la duración que sale de su guion.
 // Cada miniatura: <Still id="Mini-NN-Nombre"> de 1280×720.
@@ -20,6 +21,17 @@ export const RemotionRoot: React.FC = () => (
         width={W}
         height={H}
       />
+    </Folder>
+    <Folder name="Numpy-1D">
+      <Composition
+        id="N01-ListasArreglos"
+        component={N01ListasArreglos}
+        durationInFrames={planificar(N01).total}
+        fps={FPS}
+        width={W}
+        height={H}
+      />
+      <Still id="Mini-N01-ListasArreglos" component={MiniN01} width={MINI_W} height={MINI_H} />
     </Folder>
     <Folder name="Miniaturas">
       <Still id="Mini-00-Plantilla" component={MiniPlantilla} width={MINI_W} height={MINI_H} />

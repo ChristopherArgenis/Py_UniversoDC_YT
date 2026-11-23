@@ -66,16 +66,24 @@ export type LineaCodigo = {
   at: number;
   /** Texto de la línea. Una línea vacía deja un espacio. */
   py: string;
+  /** Resultado que se muestra a la derecha de la línea (`→ res`), estilo consola. */
+  res?: string;
+  /** Frame en que aparece `res` (por defecto, al terminar de escribirse la línea). */
+  resAt?: number;
 };
+
+/** Una línea de salida: texto, o texto + frame en que aparece. */
+export type LineaSalida = string | { t: string; at: number };
 
 /**
  * Celda de código estilo notebook. Cada línea se escribe en su frame `at` (sincronízalo con la frase de Alex).
  * `resaltar` marca líneas (índices) con una barra amarilla a partir de `resaltarDesde`.
- * `salida` aparece debajo en `atSalida`, como la salida de la celda.
+ * `salida` aparece debajo (desde `atSalida`, o cada línea en su propio `at`). Su espacio está reservado desde
+ * el inicio: la celda nunca cambia de tamaño ni empuja lo que tenga alrededor.
  */
 export const Celda: React.FC<{
   lineas: LineaCodigo[];
-  salida?: string[];
+  salida?: LineaSalida[];
   atSalida?: number;
   resaltar?: number[];
   resaltarDesde?: number;
@@ -85,13 +93,17 @@ export const Celda: React.FC<{
   size?: number;
   titulo?: string;
   n?: number;
-}> = ({ lineas, salida, atSalida = 1e9, resaltar = [], resaltarDesde = 1e9, vel = 18, ancho = 1100, size = 34, titulo = "notebook.ipynb", n = 1 }) => {
+  /** Frame en que aparece la celda vacía (por defecto, 10 frames antes de su primera línea). Usa 0 si la escena empieza con ella. */
+  desde?: number;
+}> = ({ lineas, salida, atSalida = 1e9, resaltar = [], resaltarDesde = 1e9, vel = 18, ancho = 1100, size = 34, titulo = "notebook.ipynb", n = 1, desde }) => {
   const frame = useCurrentFrame();
   const alto = size * 1.55;
   const primera = lineas[0]?.at ?? 0;
-  const ejecutada = frame >= atSalida;
+  const sal = (salida ?? []).map((x, i) => (typeof x === "string" ? { t: x, at: atSalida + i * 4 } : x));
+  const primeraSalida = sal.length ? Math.min(...sal.map((x) => x.at)) : 1e9;
+  const ejecutada = frame >= primeraSalida;
   return (
-    <Aparece at={Math.max(0, primera - 10)}>
+    <Aparece at={desde ?? Math.max(0, primera - 10)}>
       <div
         style={{
           width: ancho,
@@ -135,22 +147,36 @@ export const Celda: React.FC<{
                 >
                   {frame >= l.at && <LineaPy texto={l.py} visibles={vis} />}
                   {escribiendo && <span style={{ color: C.green }}>▍</span>}
+                  {l.res !== undefined && frame >= (l.resAt ?? l.at + Math.max(6, Math.min(vel, total * 1.2)) + 4) && (
+                    <span style={{ color: C.green }}>{"  → " + l.res}</span>
+                  )}
                 </div>
               );
             })}
           </div>
         </div>
-        {salida && ejecutada && (
-          <div style={{ borderTop: `2px solid ${C.dim}22`, padding: "16px 26px 22px 138px", background: "#0b1026" }}>
-            {salida.map((s, i) => (
-              <Aparece key={i} at={atSalida + i * 4}>
-                <div style={{ fontFamily: MONO, fontSize: size * 0.9, color: C.ink, whiteSpace: "pre", fontVariantLigatures: "none" }}>{s}</div>
-              </Aparece>
+        {sal.length > 0 && (
+          <div style={{ borderTop: `2px solid ${C.dim}22`, padding: "14px 26px 18px 138px", background: "#0b1026" }}>
+            {sal.map((x, i) => (
+              <div
+                key={i}
+                style={{
+                  fontFamily: MONO,
+                  fontSize: size * 0.9,
+                  lineHeight: 1.35,
+                  color: C.ink,
+                  whiteSpace: "pre",
+                  fontVariantLigatures: "none",
+                  opacity: interpolate(frame, [x.at, x.at + 6], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp" }),
+                }}
+              >
+                {x.t}
+              </div>
             ))}
           </div>
         )}
       </div>
-      {salida && atSalida < 1e8 && <Sfx src="tick.wav" at={atSalida} volume={0.3} />}
+      {sal.length > 0 && primeraSalida < 1e8 && <Sfx src="tick.wav" at={primeraSalida} volume={0.3} />}
     </Aparece>
   );
 };

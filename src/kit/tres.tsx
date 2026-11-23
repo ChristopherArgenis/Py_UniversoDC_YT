@@ -22,9 +22,11 @@ export const Escena3D: React.FC<{
   altura?: number;
   anguloInicial?: number;
   objetivo?: [number, number, number];
+  /** Campo de visión vertical en grados (bajo = menos deformación, para filas largas en lienzos bajos). */
+  fov?: number;
   children: React.ReactNode;
-}> = ({ width = 1920, height = 1080, orbita = 8, dist = 9, altura = 4, anguloInicial = 35, objetivo = [0, 0, 0], children }) => (
-  <ThreeCanvas width={width} height={height} style={{ position: "absolute", inset: 0 }} gl={{ antialias: true, alpha: true }} dpr={1} camera={{ fov: 40, near: 0.1, far: 200 }}>
+}> = ({ width = 1920, height = 1080, orbita = 8, dist = 9, altura = 4, anguloInicial = 35, objetivo = [0, 0, 0], fov = 40, children }) => (
+  <ThreeCanvas width={width} height={height} style={{ position: "absolute", inset: 0 }} gl={{ antialias: true, alpha: true }} dpr={1} camera={{ fov, near: 0.1, far: 200 }}>
     <Camara orbita={orbita} dist={dist} altura={altura} anguloInicial={anguloInicial} objetivo={objetivo} />
     <ambientLight intensity={0.55} />
     <directionalLight position={[6, 10, 8]} intensity={1.6} />
@@ -46,7 +48,7 @@ const Camara: React.FC<{ orbita: number; dist: number; altura: number; anguloIni
   const camera = useThree((st) => st.camera);
   const invalidate = useThree((st) => st.invalidate);
   useLayoutEffect(() => {
-    camera.position.set(Math.sin(ang) * dist, altura, Math.cos(ang) * dist);
+    camera.position.set(objetivo[0] + Math.sin(ang) * dist, objetivo[1] + altura, objetivo[2] + Math.cos(ang) * dist);
     camera.lookAt(...objetivo);
     camera.updateProjectionMatrix();
     invalidate();

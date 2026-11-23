@@ -66,6 +66,7 @@ export const Chip: React.FC<{ children: React.ReactNode; color?: string; bg?: st
       borderRadius: 12,
       padding: "6px 16px",
       display: "inline-block",
+      whiteSpace: "nowrap",
     }}
   >
     {children}

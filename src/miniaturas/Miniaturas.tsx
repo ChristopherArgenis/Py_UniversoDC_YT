@@ -31,3 +31,32 @@ export const MiniPlantilla: React.FC = () => (
     />
   </FondoMini>
 );
+
+// ---------- Numpy 1D ----------
+
+export const MiniN01: React.FC = () => (
+  <FondoMini accent={C.blue}>
+    <MiniSplit
+      texto={
+        <>
+          <ChipMini bg={C.blue} color={C.ink}>
+            NUMPY 1D
+          </ChipMini>
+          <Grande size={128} color={C.coral}>
+            [1,2,3]
+          </Grande>
+          <Grande size={150} color={C.yellow}>
+            × 2 = ?
+          </Grande>
+        </>
+      }
+      visual={
+        <div style={{ position: "relative", width: 520, height: 520 }}>
+          <Escena3D width={520} height={520} orbita={0} dist={9} altura={4} anguloInicial={30}>
+            <Arreglo3D forma={[5]} at={-200} lado={1.1} hueco={0.08} />
+          </Escena3D>
+        </div>
+      }
+    />
+  </FondoMini>
+);
