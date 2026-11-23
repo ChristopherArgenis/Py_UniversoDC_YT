@@ -166,8 +166,7 @@ casos reales). C si la serie es una secuencia estricta (cada tema necesita el an
 6. Voz → composición Remotion → revisar fotogramas en los cambios con
    `python3 scripts/revisar_fotogramas.py <video> <Composición> [escenas…]` (hojas en `out/revision/`), incluidas las 3D.
 7. Render final (`scripts/render.py`) + `ffprobe` (1920×1080, duración esperada).
-8. **Miniatura 1280×720**: máximo 3–4 palabras grandes, distintas al título, alto contraste, un solo foco visual
-   (un objeto 3D funciona muy bien), legible en pequeño. Chip con el nombre de la serie.
+8. **Miniatura 1280×720** (ver "Miniaturas" abajo). Revisarla también a 360 px y 168 px de ancho.
 9. **Merge a `main` ANTES de subir el video** (si no, el link de Colab da 404).
    Comprobar con `python3 scripts/notebook.py link <ruta>` → debe decir "Está en main".
 10. **Entregar en el chat, listo para copiar:**
@@ -179,6 +178,19 @@ casos reales). C si la serie es una secuencia estricta (cada tema necesita el an
     - **#**: 3 a 5 hashtags (los 3 primeros salen sobre el título), p. ej. #python #numpy #cienciadedatos.
     - Comentario fijado sugerido (invitar a compartir su resultado del reto del notebook).
 11. Registrar todo en `PUBLICAR.md`.
+
+## Miniaturas (criterios del dueño)
+1. **Claridad en menos de 1 s:** un solo punto focal (el dato o el objeto); quitar todo lo que distraiga.
+2. **Brecha de curiosidad:** mostrar el inicio de la historia o el resultado sorprendente, sin la respuesta.
+   Nada de pantallas llenas de código o fórmulas: el impacto visual del dato (una comparación, un resultado raro).
+3. **Complementa el título, no lo repite:** aporta la prueba visual o el dato; cero palabras del título.
+4. **Texto mínimo y legible:** 3 a 5 palabras máximo, Poppins 900 grande, con contorno o sombra (`CONTORNO`).
+5. **Alto contraste y limpieza:** fondo oscuro y desenfocado detrás de un frente brillante; paleta de 2–3 colores
+   (azul noche + blanco + amarillo; coral solo como acento).
+6. **Coherente con el video:** lo que promete se ve y se resuelve en los primeros segundos (normalmente es el gancho).
+7. **Identidad de serie:** mismo fondo, chip con el nombre de la serie arriba a la izquierda, misma tipografía y
+   encuadre en todos los episodios (`FondoNumpy1D` en `src/miniaturas/Miniaturas.tsx`).
+La esquina inferior derecha la tapa la duración: nada importante ahí.
 
 ## Cursos y series
 Cada serie (ej. "Numpy 1D") tiene: plan en `series/<serie>.md`, carpeta `Notebook/<Serie>/`, `<Folder>` en

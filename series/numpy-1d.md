@@ -53,7 +53,7 @@ Guion: `src/guiones/n01-listas-arreglos.json` (aprobado). Video: `src/videos/N01
 2. NumPy desde cero: de listas a arreglos | Numpy 1D (49)
 3. Tu primer arreglo de NumPy | Numpy 1D (37)
 
-**Miniatura:** chip "NUMPY 1D"; grande `[1, 2, 3] × 2 = ?` y un cubo 3D de arreglo (máx. 3–4 palabras).
+**Miniatura:** chip "NUMPY 1D"; foco único `[1,2,3] × 2 = [1,2,3,1,2,3]` + "¿?"; cubo 3D azul desenfocado al fondo.
 
 **Pendiente de decidir:** el "próximo video" del cierre (depende del contenido del video 2).
 
