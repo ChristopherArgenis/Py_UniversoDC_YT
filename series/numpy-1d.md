@@ -19,7 +19,8 @@ que son la base de pandas, Matplotlib y scikit-learn. Cada video sigue el conten
 | # | Título | Palabra clave | Notebook | Estado |
 |---|---|---|---|---|
 | 1 | De listas a arreglos \| Numpy 1D | numpy arreglos / numpy array | `01-listas-a-arreglos.ipynb` | renderizado · por publicar |
-| 2 | (el dueño define el contenido) | | | |
+| 2 | Índices y cortes en NumPy \| Numpy 1D | numpy índices / slicing numpy | `02-indices-y-cortes.ipynb` | guion por aprobar |
+| 3 | (el dueño define el contenido) | | | |
 
 ## Video 1 · De listas a arreglos
 Guion: `src/guiones/n01-listas-arreglos.json` (aprobado). Video: `src/videos/N01ListasArreglos.tsx` → 5:18. Título elegido: «De listas a arreglos | Numpy 1D».
@@ -56,6 +57,27 @@ Guion: `src/guiones/n01-listas-arreglos.json` (aprobado). Video: `src/videos/N01
 **Miniatura (elegida por el dueño):** lista `[1, 2, 3]` con **36 MB** en rojo → flecha → arreglo NumPy `[1 2 3]` con **8 MB** en verde, "1 MILLÓN DE NÚMEROS" arriba. Va con el título (de listas a arreglos) y el dato sale en el video (01:24).
 
 **Pendiente de decidir:** el "próximo video" del cierre (depende del contenido del video 2).
+
+## Video 2 · Índices y cortes (Accessing Elements the NumPy Way)
+Guion: `src/guiones/n02-indices-cortes.json` (por aprobar). Duración estimada ~4–4:45 min.
+
+| Contenido del dueño | Capítulo | Qué se ve |
+|---|---|---|
+| (gancho) | La trampa | Cambiar una parte de una lista no toca el original; con un arreglo, sí |
+| (reto del video 1) | Respuesta del reto | Por qué salían escalones: astype corta 0.2…0.8 → 0 |
+| (teoría) | Tres formas de leer | **Three.js:** fila de cubos; índice, corte y lista de posiciones |
+| 1. NumPy Array Indexing | Índices de un arreglo | `temps[0]`, `[-1]`, asignar, 21.9 → 21 (cuidado), IndexError |
+| 2. Updating Arrays with Slices | Modificar con cortes | `[1:4]`, `[:3]`, `[::2]`, `[::-1]`, asignar a un corte, **vista vs copia** (**Three.js**) |
+| 3. Selecting Scattered Array Elements | Elementos dispersos | `temps[[0, 2, 5]]`, orden y repetición, es copia, asignar a posiciones |
+| (3 ejemplos) | Dónde se usa | Industria: corregir lecturas · Ciencia: descartar mediciones · Día a día: playlist |
+| (plus) | Plus: Ciencia de Datos | `permutation` + cortes = entrenamiento/prueba; `iloc` de pandas |
+| (reto) | Reto y resumen | Del 1 al 10, invertido y uno de cada tres, en un solo corte (respuesta: `[10 7 4 1]`) |
+
+**Títulos (≤ 60):** 1. Índices y cortes en NumPy | Numpy 1D (36) · 2. Accede a los elementos al estilo NumPy | Numpy 1D (49) ·
+3. Cómo leer y cambiar un arreglo de NumPy | Numpy 1D (50).
+
+**Miniatura (propuesta, ligada al título):** el arreglo original `[10 20 30 40 50]` arriba, un corte `[1:4]` marcado, y abajo
+el original con el `0` en coral: "¡CAMBIÓ EL ORIGINAL!" (la trampa del gancho, que el video explica en «Modificar con cortes»).
 
 ## Cómo se enlazan
 - **Pantalla final:** siguiente video + lista de reproducción (prevista en `Cierre`).

@@ -1,0 +1,248 @@
+{
+  "_nota": "Numpy 1D · Video 2. Plantilla A con 3 bloques (Concepto → Código) en el orden que dio el dueño, más la respuesta del reto del video 1. Salidas verificadas con NumPy 2.5.3.",
+  "id": "n02-indices-cortes",
+  "titulo": "Índices y cortes en NumPy | Numpy 1D",
+  "serie": "Numpy 1D",
+  "plantilla": "A",
+  "notebook": "Notebook/Numpy-1D/02-indices-y-cortes.ipynb",
+  "aprobado": false,
+  "musica": "musica/explica.wav",
+  "voz": "alex_nicola",
+  "acento": "#5b8cff",
+  "subtitulos": true,
+  "escenas": [
+    {
+      "id": "gancho",
+      "capitulo": "La trampa",
+      "pantalla": "Cuadro 0 lleno, dos paneles ya escritos (como el gancho del video 1). Izquierda (LISTA): parte = lista[1:4]; parte[0] = 0 → lista sigue [10, 20, 30, 40, 50] (en blanco, 'sin cambios'). Derecha (NUMPY): lo mismo con un arreglo → [10  0 30 40 50], el 0 resaltado en coral con brillo en g2. g3: abajo 'Índices y cortes' (espacio reservado).",
+      "codigo": [
+        "lista = [10, 20, 30, 40, 50]",
+        "parte = lista[1:4]",
+        "parte[0] = 0",
+        "print(lista)    # [10, 20, 30, 40, 50]",
+        "---",
+        "arr = np.array([10, 20, 30, 40, 50])",
+        "parte = arr[1:4]",
+        "parte[0] = 0",
+        "print(arr)      # [10  0 30 40 50]"
+      ],
+      "voz": {
+        "g1": "Tomo una parte de una lista, la cambio… y la lista original sigue igual.",
+        "g2": "Hago lo mismo con un arreglo de NumPy… y el original cambió.",
+        "g3": "Hoy vas a dominar cómo leer y cambiar los elementos de un arreglo, y a evitar esta trampa."
+      }
+    },
+    {
+      "id": "sello",
+      "pantalla": "Sello 'NUMPY 1D' con los videos 1 y 2; se ilumina el 2 ('Índices y cortes').",
+      "voz": {
+        "s1": "Esto es Numpy uno de, video dos."
+      },
+      "sub": {
+        "s1": "Esto es Numpy 1D, video 2."
+      },
+      "pausa": 0.4
+    },
+    {
+      "id": "recuerda",
+      "capitulo": "Respuesta del reto",
+      "pantalla": "Tarjeta RESPUESTA DEL RETO: la gráfica en escalones del video 1 y una tabla corta: 0.0 → 0 · 0.2 → 0 · 0.41 → 0 · 0.61 → 0 · 0.82 → 0 · 1.02 → 1, con los decimales tachados (astype corta). El primer escalón se ilumina en m2.",
+      "codigo": [
+        "x = np.linspace(0, 10, 50)",
+        "x[:6]              # [0.   0.2  0.41 0.61 0.82 1.02]",
+        "x.astype(int)[:6]  # [0 0 0 0 0 1]"
+      ],
+      "voz": {
+        "m1": "Antes, la respuesta del reto: la gráfica salía en escalones porque as type int corta los decimales.",
+        "m2": "Cero punto dos, cero punto cuatro… hasta cero punto ocho se vuelven cero. Varios valores seguidos quedan iguales, y eso forma cada escalón."
+      },
+      "sub": {
+        "m1": "Antes, la respuesta del reto: la gráfica salía en escalones porque astype(int) corta los decimales.",
+        "m2": "0.2, 0.4… hasta 0.8 se vuelven 0. Varios valores seguidos quedan iguales, y eso forma cada escalón."
+      }
+    },
+    {
+      "id": "teoria",
+      "capitulo": "Tres formas de leer",
+      "pantalla": "Three.js: fila de 7 cubos (temperaturas de la semana) con su índice 0–6 debajo y -7…-1 en morado. t2: se levanta un cubo (temps[3]) y luego un bloque seguido (temps[1:4]). t3: se levantan tres cubos sueltos (temps[[0, 2, 5]]). A la derecha, tres chips que se marcan: ÍNDICE · CORTE · LISTA DE POSICIONES.",
+      "voz": {
+        "t1": "Un arreglo es una fila de casillas numeradas desde cero. Para leerlo, los corchetes aceptan tres cosas.",
+        "t2": "Un número, para un solo elemento. Un corte, para un rango seguido.",
+        "t3": "Y una lista de posiciones, para elementos sueltos. Son las tres partes de este video."
+      }
+    },
+    {
+      "id": "indices",
+      "capitulo": "Índices de un arreglo",
+      "pantalla": "Split: celda a la izquierda; a la derecha la fila de casillas con índices (amarillo) y negativos (morado) que se iluminan con cada frase. i3: la casilla 2 cambia de 19 a 30. i4: tarjeta Cuidado con 21.9 → 21 (decimales tachados). i5: tarjeta con el IndexError en morado.",
+      "codigo": [
+        "temps = np.array([21, 23, 19, 25, 22, 18, 24])",
+        "print(temps[0], temps[3], temps[-1])   # 21 25 24",
+        "temps[2] = 30",
+        "print(temps)          # [21 23 30 25 22 18 24]",
+        "---",
+        "temps[0] = 21.9",
+        "print(temps[0])       # 21",
+        "---",
+        "temps[10]             # IndexError: index 10 is out of bounds for axis 0 with size 7"
+      ],
+      "voz": {
+        "i1": "Empecemos con las temperaturas de una semana. Un índice es la posición de un elemento, y va entre corchetes.",
+        "i2": "Temps de cero es el primero, temps de tres el cuarto, y temps de menos uno, el último.",
+        "i3": "Con el mismo índice puedes cambiar un valor: temps de dos igual a treinta.",
+        "i4": "Cuidado: el arreglo es de enteros. Si guardas veintiuno punto nueve, NumPy corta los decimales y guarda veintiuno, como as type en el video anterior.",
+        "i5": "Y si pides una posición que no existe, como la diez, Python te avisa con un Index Error."
+      },
+      "sub": {
+        "i2": "temps[0] es el primero, temps[3] el cuarto, y temps[-1], el último.",
+        "i3": "Con el mismo índice puedes cambiar un valor: temps[2] = 30.",
+        "i4": "Cuidado: el arreglo es de enteros. Si guardas 21.9, NumPy corta los decimales y guarda 21, como astype en el video anterior.",
+        "i5": "Y si pides una posición que no existe, como la 10, Python te avisa con un IndexError."
+      },
+      "pausa": 1.2
+    },
+    {
+      "id": "cortes",
+      "capitulo": "Modificar con cortes",
+      "pantalla": "k1–k3: celda con 5 cortes y su resultado al lado de cada línea; arriba, la fila de casillas con un corchete que marca el rango de cada corte (el 4 de [1:4] tachado: no se incluye). k4: segunda celda: temps[1:4] = 0 y temps[-2:] = [100, 200], las casillas cambian. k5–k6 (Three.js): la fila original de cubos y una 'ventana' (vista) sobre los 3 primeros; al cambiar semana[0] = 99, el cubo del ORIGINAL se pinta de coral. Luego .copy(): tres cubos salen de la fila y forman una fila aparte; al cambiarlos, el original no cambia.",
+      "codigo": [
+        "print(temps[1:4])     # [23 19 25]",
+        "print(temps[:3])      # [21 23 19]",
+        "print(temps[4:])      # [22 18 24]",
+        "print(temps[::2])     # [21 19 22 24]",
+        "print(temps[::-1])    # [24 18 22 25 19 23 21]",
+        "---",
+        "temps[1:4] = 0",
+        "print(temps)          # [21  0  0  0 22 18 24]",
+        "temps[-2:] = [100, 200]",
+        "print(temps)          # [ 21   0   0   0  22 100 200]",
+        "---",
+        "temps = np.array([21, 23, 19, 25, 22, 18, 24])",
+        "semana = temps[0:3]   # vista",
+        "semana[0] = 99",
+        "print(temps)          # [99 23 19 25 22 18 24]",
+        "copia = temps[0:3].copy()   # copia aparte"
+      ],
+      "voz": {
+        "k1": "Para tomar varios seguidos usas un corte: inicio, dos puntos, fin. Como en range, el fin no se incluye.",
+        "k2": "Si omites el inicio, empieza desde el primero; si omites el fin, llega hasta el último.",
+        "k3": "Con un tercer número das el paso: de dos en dos. Y con paso menos uno, lo inviertes.",
+        "k4": "Lo poderoso: a un corte le puedes asignar. Un solo cero llena las tres posiciones, o le das una lista del mismo tamaño.",
+        "k5": "Y aquí está la trampa del inicio: un corte no es una copia, es una vista. Mira la misma memoria del arreglo original.",
+        "k6": "Por eso, si cambias la vista, cambias el original. Si quieres trabajar aparte, usa punto copy."
+      },
+      "sub": {
+        "k1": "Para tomar varios seguidos usas un corte: inicio:fin. Como en range, el fin no se incluye.",
+        "k3": "Con un tercer número das el paso: de 2 en 2. Y con paso -1, lo inviertes.",
+        "k6": "Por eso, si cambias la vista, cambias el original. Si quieres trabajar aparte, usa .copy()."
+      },
+      "pausa": 1.2
+    },
+    {
+      "id": "dispersos",
+      "capitulo": "Elementos dispersos",
+      "pantalla": "Split: celda a la izquierda; a la derecha la fila de casillas: d1 se iluminan 0, 2 y 5 y bajan a una fila nueva [21 19 18]; d2 la fila nueva [24 21 24] (repite el 6). d3: chip COPIA: la fila nueva cambia a 500 y el original queda igual (palomita verde). d4: las casillas 0, 2 y 5 del original pasan a -1 (coral).",
+      "codigo": [
+        "idx = [0, 2, 5]",
+        "print(temps[idx])         # [21 19 18]",
+        "print(temps[[6, 0, 6]])   # [24 21 24]",
+        "---",
+        "sel = temps[idx]          # copia",
+        "sel[0] = 500",
+        "print(temps)              # [21 23 19 25 22 18 24]",
+        "temps[idx] = -1",
+        "print(temps)              # [-1 23 -1 25 22 -1 24]"
+      ],
+      "voz": {
+        "d1": "¿Y si los que quieres no están seguidos? Le pasas una lista de posiciones. A esto se le llama indexado elegante, o fancy indexing.",
+        "d2": "Las posiciones pueden ir en cualquier orden, y hasta repetirse.",
+        "d3": "Ojo con la diferencia: esto sí crea una copia. Si cambias la selección, el original no se entera.",
+        "d4": "Pero si asignas directo, temps con la lista igual a menos uno, cambias justo esas posiciones."
+      },
+      "sub": {
+        "d4": "Pero si asignas directo, temps[idx] = -1, cambias justo esas posiciones."
+      },
+      "pausa": 1.2
+    },
+    {
+      "id": "ejemplos",
+      "capitulo": "Dónde se usa",
+      "pantalla": "Tres tarjetas que entran una por frase (espacio reservado). 1 INDUSTRIA: lecturas con dos 99.9 en coral → 'lect[[2, 5]] = 20.2' → corregidas. 2 CIENCIA: mediciones con las dos primeras y la última en gris ('calentando') → 'datos[2:-1]' → [9.8 9.9 10.1 9.7 10.] y promedio 9.9. 3 DÍA A DÍA: playlist de 6 canciones inventadas → 'canciones[[3, 1, 4]]' → ['Sol' 'Luna' 'Mar']. Nota: 'Ejemplos simplificados'.",
+      "codigo": [
+        "lect = np.array([20.1, 20.3, 99.9, 20.2, 20.4, 99.9, 20.0])",
+        "lect[[2, 5]] = 20.2",
+        "print(lect)      # [20.1 20.3 20.2 20.2 20.4 20.2 20. ]",
+        "---",
+        "datos = np.array([0.0, 3.2, 9.8, 9.9, 10.1, 9.7, 10.0, 0.4])",
+        "print(datos[2:-1])          # [ 9.8  9.9 10.1  9.7 10. ]",
+        "print(datos[2:-1].mean())   # 9.9",
+        "---",
+        "canciones = np.array([\"Intro\", \"Luna\", \"Río\", \"Sol\", \"Mar\", \"Nube\"])",
+        "print(canciones[[3, 1, 4]])   # ['Sol' 'Luna' 'Mar']"
+      ],
+      "voz": {
+        "e1": "En una fábrica, un sensor marcó noventa y nueve punto nueve por error en dos lecturas. Con sus posiciones, las corriges en una línea.",
+        "e2": "En un laboratorio, el aparato tarda en estabilizarse. Con un corte descartas las primeras mediciones y la última, y promedias solo las buenas.",
+        "e3": "Y en tu playlist: tus favoritas están en las posiciones tres, uno y cuatro. Las sacas en ese orden con una lista de posiciones."
+      },
+      "sub": {
+        "e1": "En una fábrica, un sensor marcó 99.9 por error en dos lecturas. Con sus posiciones, las corriges en una línea.",
+        "e3": "Y en tu playlist: tus favoritas están en las posiciones 3, 1 y 4. Las sacas en ese orden con una lista de posiciones."
+      },
+      "pausa": 1.2
+    },
+    {
+      "id": "plus",
+      "capitulo": "Plus: Ciencia de Datos",
+      "pantalla": "Chip PLUS · CIENCIA DE DATOS. q1–q2: 10 casillas (filas de datos) que se barajan con permutation → [4 6 2 7 3 5 9 0 8 1]; un corte separa 8 en verde (ENTRENAR) y 2 en amarillo (PROBAR). q3: tabla de pandas con df.iloc[1:4] y df.iloc[[0, 4]] resaltando filas.",
+      "codigo": [
+        "rng = np.random.default_rng(0)",
+        "idx = rng.permutation(10)   # [4 6 2 7 3 5 9 0 8 1]",
+        "entrenar = idx[:8]          # [4 6 2 7 3 5 9 0]",
+        "prueba = idx[8:]            # [8 1]",
+        "---",
+        "df.iloc[1:4]      # filas 1, 2 y 3",
+        "df.iloc[[0, 4]]   # filas 0 y 4"
+      ],
+      "voz": {
+        "q1": "Plus de ciencia de datos: antes de entrenar un modelo, separas los datos en entrenamiento y prueba.",
+        "q2": "Mezclas las posiciones con permutation, y con cortes tomas el ochenta por ciento para entrenar y el resto para probar.",
+        "q3": "Y en pandas, i loc usa exactamente estos índices, cortes y listas de posiciones."
+      },
+      "sub": {
+        "q2": "Mezclas las posiciones con permutation, y con cortes tomas el 80 % para entrenar y el resto para probar.",
+        "q3": "Y en pandas, iloc usa exactamente estos índices, cortes y listas de posiciones."
+      }
+    },
+    {
+      "id": "reto",
+      "capitulo": "Reto y resumen",
+      "pantalla": "Reto con su línea de código y la fila del 1 al 10 (sin la respuesta); sticker 'Resuélvelo en el notebook de Colab · link en la descripción'. Luego 3 tarjetas de resumen: ÍNDICE · CORTE (vista) · LISTA DE POSICIONES (copia).",
+      "codigo": [
+        "a = np.arange(1, 11)",
+        "a[ ? ]   # invierte y toma uno de cada tres, en un solo corte"
+      ],
+      "voz": {
+        "r1": "Tu reto: con a range crea los números del uno al diez. Inviértelos y quédate con uno de cada tres, en un solo corte.",
+        "r2": "¿Qué sale? Escríbelo en los comentarios y compruébalo en el notebook.",
+        "r3": "En resumen: un índice toma un elemento; un corte toma un rango y es una vista; y una lista de posiciones toma elementos sueltos y crea una copia."
+      },
+      "sub": {
+        "r1": "Tu reto: con arange crea los números del 1 al 10. Inviértelos y quédate con uno de cada tres, en un solo corte."
+      }
+    },
+    {
+      "id": "cierre",
+      "capitulo": "Cierre",
+      "pantalla": "Próximo video de la serie (pendiente: lo define el dueño) con AvisoNotebook abajo; luego el cierre estándar con la mitad derecha libre para la pantalla final.",
+      "voz": {
+        "z1": "En el próximo video de Numpy uno de seguimos con los arreglos. Te espero.",
+        "z2": "¿Te sirvió? Ve más videos en Universo Ciencia de Datos, y suscríbete."
+      },
+      "sub": {
+        "z1": "En el próximo video de Numpy 1D seguimos con los arreglos. Te espero."
+      },
+      "min": 14
+    }
+  ]
+}
