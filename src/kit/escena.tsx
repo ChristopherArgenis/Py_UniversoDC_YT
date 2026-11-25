@@ -155,3 +155,54 @@ export const Res: React.FC<{ children: React.ReactNode; color?: string }> = ({ c
     {children}
   </Mono>
 );
+
+/** Fila de casillas con índices arriba (amarillo) y, opcional, negativos abajo (morado). */
+export const FilaIdx: React.FC<{
+  vals: string[];
+  on?: (i: number) => boolean;
+  resalte?: (i: number) => string;
+  apagada?: (i: number) => boolean;
+  ancho?: number;
+  size?: number;
+  idx?: boolean;
+  neg?: boolean;
+  negAt?: number;
+}> = ({ vals, on = () => false, resalte = () => C.yellow, apagada = () => false, ancho = 100, size = 38, idx = true, neg = false, negAt = 0 }) => {
+  const gap = 8;
+  return (
+    <div style={{ display: "flex", flexDirection: "column", gap: 8, alignItems: "center" }}>
+      {idx && (
+        <div style={{ display: "flex", gap }}>
+          {vals.map((_, i) => (
+            <Mono key={i} size={26} color={C.yellow} style={{ width: ancho, textAlign: "center" }}>
+              {i}
+            </Mono>
+          ))}
+        </div>
+      )}
+      <div style={{ display: "flex", gap }}>
+        {vals.map((v, i) => (
+          <Casilla key={i} v={v} on={on(i)} resalte={resalte(i)} ancho={ancho} alto={ancho * 0.9} size={size} apagada={apagada(i)} />
+        ))}
+      </div>
+      {neg && (
+        <Aparece at={negAt}>
+          <div style={{ display: "flex", gap }}>
+            {vals.map((_, i) => (
+              <Mono key={i} size={24} color={C.purple} style={{ width: ancho, textAlign: "center" }}>
+                {i - vals.length}
+              </Mono>
+            ))}
+          </div>
+        </Aparece>
+      )}
+    </div>
+  );
+};
+
+/** Valor que depende del tramo: devuelve el último `v` cuyo `desde` ya pasó. */
+export const tramo = <T,>(frame: number, tramos: { desde: number; v: T }[], inicial: T): T => {
+  let r = inicial;
+  for (const t of tramos) if (frame >= t.desde) r = t.v;
+  return r;
+};

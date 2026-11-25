@@ -146,3 +146,27 @@ export const MiniN02: React.FC = () => (
     </AbsoluteFill>
   </FondoNumpy1D>
 );
+
+/** Columna de una comparación de tiempos: chip y cifra grande. */
+const ColumnaTiempo: React.FC<{ chip: string; cifra: string; color: string }> = ({ chip, cifra, color }) => (
+  <div style={{ width: 500, display: "flex", flexDirection: "column", alignItems: "center", gap: 18 }}>
+    <div style={{ fontFamily: FONT, fontWeight: 900, fontSize: 56, color: C.bg, background: color, borderRadius: 16, padding: "6px 30px" }}>{chip}</div>
+    <div style={{ fontFamily: FONT, fontWeight: 900, fontSize: 136, color, lineHeight: 1, whiteSpace: "nowrap", ...CONTORNO }}>{cifra}</div>
+  </div>
+);
+
+// Foco: el cambio que promete el título (vectorizar = adiós al for), medido en el gancho: for 74 ms → NumPy 1.5 ms.
+export const MiniN03: React.FC = () => (
+  <FondoNumpy1D>
+    <div style={{ position: "absolute", top: 50, left: 0, right: 0, display: "flex", justifyContent: "center" }}>
+      <div style={{ fontFamily: FONT, fontWeight: 900, fontSize: 56, color: C.yellow, letterSpacing: 2, ...CONTORNO, WebkitTextStroke: `7px ${C.bg}`, marginLeft: 260 }}>×1,000,000</div>
+    </div>
+    <AbsoluteFill style={{ padding: "120px 40px 40px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "center", gap: 10 }}>
+      <ColumnaTiempo chip="CICLO FOR" cifra="74 ms" color={C.coral} />
+      <svg width={140} height={115} viewBox="0 0 170 140" style={{ filter: "drop-shadow(0 8px 0 #0008)" }}>
+        <path d="M10 50 H100 V15 L160 70 L100 125 V90 H10 Z" fill={C.ink} stroke={C.bg} strokeWidth={8} strokeLinejoin="round" />
+      </svg>
+      <ColumnaTiempo chip="NUMPY" cifra="1.5 ms" color={C.green} />
+    </AbsoluteFill>
+  </FondoNumpy1D>
+);

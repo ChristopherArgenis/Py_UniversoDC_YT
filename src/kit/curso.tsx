@@ -74,7 +74,7 @@ export const SelloSerie: React.FC<{ nombre: string; temas: string[]; n: number; 
   return (
     <Stage gap={46}>
       <Words text={nombre} size={110} accent={color} />
-      <div style={{ display: "grid", gridTemplateColumns: `repeat(${cols}, ${temas.length <= 2 ? "auto" : "220px"})`, gap: 16 }}>
+      <div style={{ display: "grid", gridTemplateColumns: `repeat(${cols}, ${temas.length <= 4 ? "auto" : "220px"})`, gap: 16 }}>
         {temas.map((t, i) => (
           <Aparece key={t} at={10 + i * 3}>
             <div

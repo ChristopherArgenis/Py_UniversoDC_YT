@@ -20,7 +20,7 @@ que son la base de pandas, Matplotlib y scikit-learn. Cada video sigue el conten
 |---|---|---|---|---|
 | 1 | De listas a arreglos \| Numpy 1D | numpy arreglos / numpy array | `01-listas-a-arreglos.ipynb` | renderizado · notebook en main · por publicar |
 | 2 | Índices y cortes en NumPy \| Numpy 1D | numpy índices / slicing numpy | `02-indices-y-cortes.ipynb` | renderizado · por publicar |
-| 3 | Operaciones vectorizadas en NumPy \| Numpy 1D | operaciones vectorizadas numpy | `03-operaciones-vectorizadas.ipynb` | guion por aprobar |
+| 3 | Operaciones vectorizadas en NumPy \| Numpy 1D | operaciones vectorizadas numpy | `03-operaciones-vectorizadas.ipynb` | renderizado · por publicar |
 | 4 | (el dueño define el contenido) | | | |
 
 ## Video 1 · De listas a arreglos
@@ -81,7 +81,7 @@ Guion: `src/guiones/n02-indices-cortes.json` (aprobado). Video: `src/videos/N02I
 (3 palabras; la trampa del gancho, que el video explica en «Modificar con cortes»).
 
 ## Video 3 · Operaciones vectorizadas (Vectorized Operations)
-Guion: `src/guiones/n03-vectorizadas.json` (por aprobar). Duración estimada ~4:30–5:20.
+Guion: `src/guiones/n03-vectorizadas.json` (aprobado). Video: `src/videos/N03Vectorizadas.tsx` → 4:46. Título elegido: «Operaciones vectorizadas en NumPy | Numpy 1D».
 
 | Contenido del dueño | Capítulo | Qué se ve |
 |---|---|---|
@@ -100,8 +100,7 @@ Guion: `src/guiones/n03-vectorizadas.json` (por aprobar). Duración estimada ~4:
 **Títulos (≤ 60):** 1. Operaciones vectorizadas en NumPy | Numpy 1D (44) · 2. Adiós al ciclo for: vectoriza con NumPy | Numpy 1D (50) ·
 3. Calcula sin ciclos for con NumPy | Numpy 1D (43).
 
-**Miniatura (propuesta, ligada al título):** comparación medida: «CICLO FOR 74 ms» en rojo → «NUMPY 1.5 ms» en verde, con
-«1 MILLÓN DE CÁLCULOS» arriba (el dato del gancho, que el video muestra en los primeros segundos).
+**Miniatura:** «×1,000,000» arriba; «CICLO FOR 74 ms» en rojo → «NUMPY 1.5 ms» en verde (3 palabras; el dato del gancho).
 
 ## Cómo se enlazan
 - **Pantalla final:** siguiente video + lista de reproducción (prevista en `Cierre`).

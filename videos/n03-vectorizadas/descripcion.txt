@@ -1,0 +1,32 @@
+Aprende operaciones vectorizadas en NumPy: calcula con arreglos completos sin escribir ciclos for, y mucho más rápido.
+Usas suma, resta, multiplicación y división con arreglos, potencias, división entera y residuo, combinas arreglos elemento a elemento, encadenas operaciones y usas funciones matemáticas como np.sqrt y np.exp.
+
+📓 Practica con el notebook en Google Colab (gratis, sin instalar nada):
+https://colab.research.google.com/github/ChristopherArgenis/Py_UniversoDC_YT/blob/main/Notebook/Numpy-1D/03-operaciones-vectorizadas.ipynb
+
+Video 3 de Numpy 1D, el curso de NumPy desde cero para llegar a Ciencia de Datos. Un millón de temperaturas de Celsius a Fahrenheit: con un ciclo for tarda 74 milisegundos; con NumPy, 1.5. Aquí ves cómo y por qué, con código real y ejemplos de comercio, ciencia y día a día.
+
+Capítulos:
+00:00 Adiós al for
+00:22 Respuesta del reto
+00:34 ¿Qué es vectorizar?
+00:56 Operaciones vectorizadas
+01:18 Potencias, división entera y residuo
+01:52 Combinar arreglos
+02:22 Encadenar operaciones
+02:48 Funciones matemáticas
+03:13 Dónde se usa
+03:39 Plus: Ciencia de Datos
+04:05 Reto y resumen
+04:32 Cierre
+
+El código está en pantalla desde el minuto 00:56, y completo en el notebook.
+Reto: suma los cuadrados de los números impares del 1 al 10, en una sola línea y sin for. Respóndelo en los comentarios.
+
+Video anterior: Índices y cortes en NumPy | Numpy 1D
+
+Fuentes: documentación oficial de NumPy (numpy.org). Tiempos medidos con timeit en el notebook (varían según la computadora). Ejemplos simplificados con datos inventados.
+
+Suscríbete a @UniversoCienciaDatos · TikTok @argenis2125 · Instagram @kriz2125
+
+#python #numpy #cienciadedatos #programacion

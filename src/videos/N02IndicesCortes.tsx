@@ -6,7 +6,7 @@ import { leerGuion, VideoLargo, type EscenaProps } from "../kit/largo";
 import { Aparece, Chip, useP } from "../kit/piezas";
 import { CierreCurso, Cuidado, Plano, PlusDatos, RetoResumen, Seccion, SelloSerie, Nota } from "../kit/curso";
 import { AvisoNotebook, Celda, Consola } from "../kit/codigo";
-import { Casilla, Fase, Fijo, Mono, Res, Tarjeta } from "../kit/escena";
+import { Casilla, Fase, Fijo, FilaIdx, Mono, Res, Tarjeta, tramo } from "../kit/escena";
 import { colorValor, Escena3D } from "../kit/tres";
 import { C, MONO } from "../kit/theme";
 import guion from "../guiones/n02-indices-cortes.json";
@@ -17,57 +17,6 @@ import guion from "../guiones/n02-indices-cortes.json";
 
 const NB = guion.notebook;
 const TEMPS = ["21", "23", "19", "25", "22", "18", "24"];
-
-/** Fila de casillas con índices arriba (amarillo) y, opcional, negativos abajo (morado). */
-const FilaIdx: React.FC<{
-  vals: string[];
-  on?: (i: number) => boolean;
-  resalte?: (i: number) => string;
-  apagada?: (i: number) => boolean;
-  ancho?: number;
-  size?: number;
-  idx?: boolean;
-  neg?: boolean;
-  negAt?: number;
-}> = ({ vals, on = () => false, resalte = () => C.yellow, apagada = () => false, ancho = 100, size = 38, idx = true, neg = false, negAt = 0 }) => {
-  const gap = 8;
-  return (
-    <div style={{ display: "flex", flexDirection: "column", gap: 8, alignItems: "center" }}>
-      {idx && (
-        <div style={{ display: "flex", gap }}>
-          {vals.map((_, i) => (
-            <Mono key={i} size={26} color={C.yellow} style={{ width: ancho, textAlign: "center" }}>
-              {i}
-            </Mono>
-          ))}
-        </div>
-      )}
-      <div style={{ display: "flex", gap }}>
-        {vals.map((v, i) => (
-          <Casilla key={i} v={v} on={on(i)} resalte={resalte(i)} ancho={ancho} alto={ancho * 0.9} size={size} apagada={apagada(i)} />
-        ))}
-      </div>
-      {neg && (
-        <Aparece at={negAt}>
-          <div style={{ display: "flex", gap }}>
-            {vals.map((_, i) => (
-              <Mono key={i} size={24} color={C.purple} style={{ width: ancho, textAlign: "center" }}>
-                {i - vals.length}
-              </Mono>
-            ))}
-          </div>
-        </Aparece>
-      )}
-    </div>
-  );
-};
-
-/** Valor que depende del tramo: devuelve el último `v` cuyo `desde` ya pasó. */
-const tramo = <T,>(frame: number, tramos: { desde: number; v: T }[], inicial: T): T => {
-  let r = inicial;
-  for (const t of tramos) if (frame >= t.desde) r = t.v;
-  return r;
-};
 
 // ---------------------------------------------------------------- 1 · Gancho
 
