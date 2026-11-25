@@ -10,6 +10,7 @@ revisar  1) El archivo NO debe tener salidas guardadas (la persona lo ejecuta y 
          2) Ejecuta una copia temporal: las celdas con la etiqueta "ejercicio" se cambian por el código
             de la celda markdown "solucion" que les sigue, para comprobar que todo corre sin errores.
          3) Revisa que el botón de Colab apunte a su propia ruta.
+         Una celda que muestra un error A PROPÓSITO lleva la etiqueta "raises-exception".
 link     Imprime el enlace directo a Colab para la descripción del video y avisa si el notebook
          todavía NO está en la rama main de GitHub (el enlace solo funciona desde main:
          hacer el merge ANTES de publicar el video).

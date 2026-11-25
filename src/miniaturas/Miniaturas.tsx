@@ -101,3 +101,48 @@ export const MiniN01: React.FC = () => (
     </AbsoluteFill>
   </FondoNumpy1D>
 );
+
+/** Casilla grande de miniatura. */
+const CasMini: React.FC<{ v: string; color?: string; fondo?: string }> = ({ v, color = C.ink, fondo = C.bg2 }) => (
+  <div
+    style={{
+      width: 168,
+      height: 150,
+      borderRadius: 22,
+      border: `6px solid ${C.bg}`,
+      background: fondo,
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      fontFamily: FONT,
+      fontWeight: 900,
+      fontSize: 84,
+      color,
+      boxShadow: "0 10px 0 #0008",
+    }}
+  >
+    {v}
+  </div>
+);
+
+// Foco: la trampa del título (índices y cortes): cambias un corte y el ORIGINAL cambia. Se ve en el gancho y se explica en «Modificar con cortes».
+export const MiniN02: React.FC = () => (
+  <FondoNumpy1D>
+    <AbsoluteFill style={{ padding: "190px 0 0 0", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 44 }}>
+      <div style={{ position: "relative", display: "flex", gap: 14 }}>
+        <CasMini v="10" />
+        <CasMini v="0" color={C.bg} fondo={C.coral} />
+        <CasMini v="30" />
+        <CasMini v="40" />
+        <CasMini v="50" />
+        <div style={{ position: "absolute", top: -26, left: 182 - 8, width: 182 * 3 - 14 + 16, height: 190, border: `10px solid ${C.yellow}`, borderRadius: 30 }} />
+        <div style={{ position: "absolute", top: -112, left: 182 - 8, width: 182 * 3 - 14 + 16, textAlign: "center", fontFamily: FONT, fontWeight: 900, fontSize: 64, color: C.yellow, ...CONTORNO, WebkitTextStroke: `8px ${C.bg}` }}>
+          [1:4]
+        </div>
+      </div>
+      <div style={{ fontFamily: FONT, fontWeight: 900, fontSize: 100, color: C.ink, ...CONTORNO }}>
+        ¡CAMBIÓ EL <span style={{ color: C.coral }}>ORIGINAL</span>!
+      </div>
+    </AbsoluteFill>
+  </FondoNumpy1D>
+);

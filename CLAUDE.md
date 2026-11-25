@@ -154,6 +154,7 @@ casos reales). C si la serie es una secuencia estricta (cada tema necesita el an
 - Antes de subir: `python3 scripts/notebook.py revisar <ruta>` (sin salidas, botón de Colab correcto, y una
   ejecución de prueba con las soluciones que debe pasar sin errores).
 - Botón "Open in Colab" arriba, con el link a su propia ruta en `main`.
+- Celdas que muestran un error a propósito (ej. `IndexError`): etiqueta `raises-exception`.
 
 ## Flujo (en orden, sin saltar pasos)
 1. **Plan:** público y nivel, palabra clave, plantilla (A/B/C), gancho, capítulos con tiempos, escenas 3D (si

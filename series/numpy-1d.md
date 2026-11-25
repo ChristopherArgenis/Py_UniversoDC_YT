@@ -19,7 +19,7 @@ que son la base de pandas, Matplotlib y scikit-learn. Cada video sigue el conten
 | # | Título | Palabra clave | Notebook | Estado |
 |---|---|---|---|---|
 | 1 | De listas a arreglos \| Numpy 1D | numpy arreglos / numpy array | `01-listas-a-arreglos.ipynb` | renderizado · por publicar |
-| 2 | Índices y cortes en NumPy \| Numpy 1D | numpy índices / slicing numpy | `02-indices-y-cortes.ipynb` | guion por aprobar |
+| 2 | Índices y cortes en NumPy \| Numpy 1D | numpy índices / slicing numpy | `02-indices-y-cortes.ipynb` | renderizado · por publicar |
 | 3 | (el dueño define el contenido) | | | |
 
 ## Video 1 · De listas a arreglos
@@ -59,7 +59,7 @@ Guion: `src/guiones/n01-listas-arreglos.json` (aprobado). Video: `src/videos/N01
 **Pendiente de decidir:** el "próximo video" del cierre (depende del contenido del video 2).
 
 ## Video 2 · Índices y cortes (Accessing Elements the NumPy Way)
-Guion: `src/guiones/n02-indices-cortes.json` (por aprobar). Duración estimada ~4–4:45 min.
+Guion: `src/guiones/n02-indices-cortes.json` (aprobado). Video: `src/videos/N02IndicesCortes.tsx` → 4:02. Título elegido: «Índices y cortes en NumPy | Numpy 1D».
 
 | Contenido del dueño | Capítulo | Qué se ve |
 |---|---|---|
@@ -76,8 +76,8 @@ Guion: `src/guiones/n02-indices-cortes.json` (por aprobar). Duración estimada ~
 **Títulos (≤ 60):** 1. Índices y cortes en NumPy | Numpy 1D (36) · 2. Accede a los elementos al estilo NumPy | Numpy 1D (49) ·
 3. Cómo leer y cambiar un arreglo de NumPy | Numpy 1D (50).
 
-**Miniatura (propuesta, ligada al título):** el arreglo original `[10 20 30 40 50]` arriba, un corte `[1:4]` marcado, y abajo
-el original con el `0` en coral: "¡CAMBIÓ EL ORIGINAL!" (la trampa del gancho, que el video explica en «Modificar con cortes»).
+**Miniatura:** casillas `10 [0 30 40] 50` con el corte `[1:4]` marcado y el `0` en coral + "¡CAMBIÓ EL ORIGINAL!"
+(3 palabras; la trampa del gancho, que el video explica en «Modificar con cortes»).
 
 ## Cómo se enlazan
 - **Pantalla final:** siguiente video + lista de reproducción (prevista en `Cierre`).

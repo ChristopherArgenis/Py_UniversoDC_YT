@@ -38,6 +38,8 @@ import { Arreglo3D, Escena3D, colorValor, semilla } from "../kit/tres";
   <Arreglo3D forma={[3, 3, 6]} at={0} ritmo={1.2} resaltar={(i, j, k) => k === 2} atResaltar={60} />
 </Escena3D>
 ```
+- `orbita` cuenta desde el frame 0 de la ESCENA, no desde que aparece el 3D: si el 3D entra a mitad de escena
+  (dentro de una `Fase`), usa `orbita={0}` o compensa `anguloInicial`; si no, la cámara ya giró y se ve de lado.
 - `ThreeCanvas` SIEMPRE lleva `width` y `height` (lo pone `Escena3D`; para miniaturas pásalos, p. ej. 520×520).
 - El texto (etiquetas, `shape`, chips) va en HTML **encima** del lienzo (`AbsoluteFill` + `Chip`), no en 3D:
   se lee mejor, usa las fuentes del canal y no necesita cargar fuentes 3D.

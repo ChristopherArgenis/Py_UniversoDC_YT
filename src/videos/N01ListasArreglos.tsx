@@ -2,6 +2,7 @@ import React, { useMemo } from "react";
 import { AbsoluteFill, interpolate, spring, useCurrentFrame, useVideoConfig } from "remotion";
 import * as THREE from "three";
 import { Sfx, Split, Stage, Sticker, Words } from "../kit/kit";
+import { AvisoGrande as AvisoGrandeKit, Barra, Casilla, Fase, Fijo, Mono, Res, Tarjeta } from "../kit/escena";
 import { leerGuion, VideoLargo, type EscenaProps } from "../kit/largo";
 import { Aparece, Chip, useP } from "../kit/piezas";
 import { CierreCurso, Cuidado, Curva, Nota, Plano, PlusDatos, RetoResumen, Seccion, SelloSerie } from "../kit/curso";
@@ -16,80 +17,7 @@ import guion from "../guiones/n01-listas-arreglos.json";
 // tiene su espacio reservado (Aparece deja el hueco aunque aún no se vea).
 
 const NB = guion.notebook;
-
-/** Muestra su contenido solo entre los frames [desde, hasta) de la escena, con un fundido corto de entrada. */
-const Fase: React.FC<{ desde: number; hasta?: number; children: React.ReactNode }> = ({ desde, hasta = 1e9, children }) => {
-  const frame = useCurrentFrame();
-  if (frame < desde || frame >= hasta) return null;
-  return <AbsoluteFill style={{ opacity: interpolate(frame, [desde, desde + 8], [0, 1], { extrapolateRight: "clamp" }) }}>{children}</AbsoluteFill>;
-};
-
-/** Texto de código fijo (ya escrito), con el resaltado del kit. */
-const Fijo: React.FC<{ texto: string; size?: number; prompt?: string }> = ({ texto, size = 40, prompt = "" }) => (
-  <Consola at={-1000} texto={texto} size={size} prompt={prompt} />
-);
-
-const Mono: React.FC<{ children: React.ReactNode; size?: number; color?: string; style?: React.CSSProperties }> = ({
-  children,
-  size = 40,
-  color = C.ink,
-  style,
-}) => <div style={{ fontFamily: MONO, fontWeight: 700, fontSize: size, color, whiteSpace: "pre", fontVariantLigatures: "none", ...style }}>{children}</div>;
-
-const Barra: React.FC<{ label: string; valor: number; max: number; unidad: string; color: string; at: number; dec?: number; ancho?: number }> = ({
-  label,
-  valor,
-  max,
-  unidad,
-  color,
-  at,
-  dec = 2,
-  ancho = 1200,
-}) => {
-  const p = useP(at, at + 25 + 50 * (valor / max));
-  return (
-    <div style={{ width: ancho, fontFamily: FONT, color: C.ink }}>
-      <div style={{ display: "flex", justifyContent: "space-between", fontWeight: 800, fontSize: 40 }}>
-        <span>{label}</span>
-        <span style={{ fontFamily: MONO, color }}>
-          {(valor * p).toFixed(dec)} {unidad}
-        </span>
-      </div>
-      <div style={{ height: 40, borderRadius: 20, background: C.bg2, marginTop: 6, overflow: "hidden" }}>
-        <div style={{ width: `${(valor / max) * 100 * p}%`, height: "100%", background: color, borderRadius: 20 }} />
-      </div>
-    </div>
-  );
-};
-
-/** Aviso grande y centrado del notebook (la escena de fondo se atenúa: nada queda encimado). */
-const AvisoGrande: React.FC<{ at: number }> = ({ at }) => (
-  <Stage>
-    <Aparece at={at}>
-      <div
-        style={{
-          background: `${C.bg2}f5`,
-          border: `4px solid ${C.yellow}`,
-          borderRadius: 32,
-          padding: "40px 60px",
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          gap: 18,
-          boxShadow: `0 0 80px ${C.yellow}33`,
-        }}
-      >
-        <Chip bg={C.yellow} size={30}>
-          NOTEBOOK DE PRÁCTICA
-        </Chip>
-        <div style={{ fontFamily: FONT, fontWeight: 900, fontSize: 72, color: C.ink }}>Pruébalo tú en Google Colab</div>
-        <div style={{ fontFamily: FONT, fontWeight: 700, fontSize: 40, color: C.yellow }}>Link en la descripción ↓</div>
-        <div style={{ fontFamily: MONO, fontSize: 26, color: C.dim }}>{NB}</div>
-      </div>
-      <Sfx src="pop.wav" at={at} volume={0.35} />
-    </Aparece>
-  </Stage>
-);
+const AvisoGrande: React.FC<{ at: number }> = ({ at }) => <AvisoGrandeKit at={at} ruta={NB} />;
 
 // ---------------------------------------------------------------- 1 · Gancho
 
@@ -267,27 +195,6 @@ const Teoria: React.FC<EscenaProps> = ({ lineas }) => {
 };
 
 // ---------------------------------------------------------------- 3 · Tu primer arreglo
-
-const Casilla: React.FC<{ v: string; on: boolean }> = ({ v, on }) => (
-  <div
-    style={{
-      width: 120,
-      height: 110,
-      borderRadius: 14,
-      border: `4px solid ${on ? C.yellow : C.green}`,
-      background: on ? `${C.yellow}33` : `${C.green}1a`,
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center",
-      fontFamily: MONO,
-      fontWeight: 700,
-      fontSize: 44,
-      color: C.ink,
-    }}
-  >
-    {v}
-  </div>
-);
 
 const Primero: React.FC<EscenaProps> = ({ lineas }) => {
   const frame = useCurrentFrame();
@@ -853,45 +760,6 @@ const Graficar: React.FC<EscenaProps> = ({ lineas }) => {
 };
 
 // ---------------------------------------------------------------- 9 · Ejemplos
-
-const Tarjeta: React.FC<{ at: number; n: number; tipo: string; color: string; titulo: string; dato: string; children: React.ReactNode }> = ({
-  at,
-  n,
-  tipo,
-  color,
-  titulo,
-  dato,
-  children,
-}) => (
-  <Aparece at={at}>
-    <div
-      style={{
-        width: 500,
-        height: 560,
-        background: `${C.bg2}cc`,
-        border: `3px solid ${color}88`,
-        borderRadius: 28,
-        padding: "30px 30px",
-        display: "flex",
-        flexDirection: "column",
-        gap: 18,
-      }}
-    >
-      <div>
-        <Chip bg={color} size={24}>{`EJEMPLO ${n} · ${tipo}`}</Chip>
-      </div>
-      <div style={{ fontFamily: FONT, fontWeight: 900, fontSize: 46, color: C.ink, lineHeight: 1.1 }}>{titulo}</div>
-      <div style={{ fontFamily: FONT, fontWeight: 600, fontSize: 28, color: C.dim }}>{dato}</div>
-      <div style={{ background: "#0f1530", borderRadius: 16, padding: "16px 18px", display: "flex", flexDirection: "column", gap: 10 }}>{children}</div>
-    </div>
-  </Aparece>
-);
-
-const Res: React.FC<{ children: React.ReactNode; color?: string }> = ({ children, color = C.green }) => (
-  <Mono size={24} color={color}>
-    {children}
-  </Mono>
-);
 
 const Ejemplos: React.FC<EscenaProps> = ({ lineas }) => {
   const frame = useCurrentFrame();

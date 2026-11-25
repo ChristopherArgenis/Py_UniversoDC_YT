@@ -1,0 +1,30 @@
+Aprende índices y cortes (slicing) en NumPy: cómo leer, cambiar y seleccionar los elementos de un arreglo.
+Usas índices positivos y negativos, cortes con inicio, fin y paso, listas de posiciones (fancy indexing) y entiendes la diferencia entre vista y copia.
+
+📓 Practica con el notebook en Google Colab (gratis, sin instalar nada):
+https://colab.research.google.com/github/ChristopherArgenis/Py_UniversoDC_YT/blob/main/Notebook/Numpy-1D/02-indices-y-cortes.ipynb
+
+Video 2 de Numpy 1D, el curso de NumPy desde cero para llegar a Ciencia de Datos. Cambias una parte de una lista y el original sigue igual; haces lo mismo con un arreglo y el original cambia. Aquí ves por qué, con código real y ejemplos de industria, ciencia y día a día.
+
+Capítulos:
+00:00 La trampa
+00:18 Respuesta del reto
+00:35 Tres formas de leer
+00:53 Índices de un arreglo
+01:28 Modificar con cortes
+02:10 Elementos dispersos
+02:37 Dónde se usa
+03:05 Plus: Ciencia de Datos
+03:26 Reto y resumen
+03:48 Cierre
+
+El código está en pantalla desde el minuto 00:53, y completo en el notebook.
+Reto: del 1 al 10, invertido y uno de cada tres, en un solo corte. ¿Qué sale? Respóndelo en los comentarios.
+
+Video anterior: De listas a arreglos | Numpy 1D
+
+Fuentes: documentación oficial de NumPy (numpy.org). Ejemplos simplificados con datos inventados.
+
+Suscríbete a @UniversoCienciaDatos · TikTok @argenis2125 · Instagram @kriz2125
+
+#python #numpy #cienciadedatos #programacion
