@@ -1,0 +1,271 @@
+{
+  "_nota": "Numpy 1D · Video 3. Plantilla A con 5 bloques (Concepto → Código) en el orden que dio el dueño, más la respuesta del reto del video 2. Salidas verificadas con NumPy 2.5.3; tiempos medidos con timeit (mejor de 5).",
+  "id": "n03-vectorizadas",
+  "titulo": "Operaciones vectorizadas en NumPy | Numpy 1D",
+  "serie": "Numpy 1D",
+  "plantilla": "A",
+  "notebook": "Notebook/Numpy-1D/03-operaciones-vectorizadas.ipynb",
+  "aprobado": false,
+  "musica": "musica/explica.wav",
+  "voz": "alex_nicola",
+  "acento": "#5b8cff",
+  "subtitulos": true,
+  "escenas": [
+    {
+      "id": "gancho",
+      "capitulo": "Adiós al for",
+      "pantalla": "Cuadro 0 lleno: '1,000,000 de temperaturas °C → °F'. Dos paneles ya escritos: izquierda CICLO FOR (4 líneas con for y append) con su barra 73.7 ms en coral; derecha NUMPY con UNA línea 'temps * 9 / 5 + 32' y su barra 1.54 ms en verde. g2: aparece '≈ 48× más rápido'. g3: abajo 'Operaciones vectorizadas' (espacio reservado). Nota: medido con timeit, varía según la computadora.",
+      "codigo": [
+        "resultado = []",
+        "for t in lista:",
+        "    resultado.append(t * 9 / 5 + 32)     # 73.7 ms",
+        "---",
+        "resultado = temps * 9 / 5 + 32          # 1.54 ms"
+      ],
+      "voz": {
+        "g1": "Un millón de temperaturas para pasar de Celsius a Fahrenheit. Con un ciclo for: setenta y cuatro milisegundos.",
+        "g2": "Con NumPy: uno punto cinco. Unas cuarenta y ocho veces más rápido, y en una sola línea.",
+        "g3": "Hoy aprendes a calcular sin ciclos: las operaciones vectorizadas."
+      },
+      "sub": {
+        "g1": "1,000,000 de temperaturas para pasar de Celsius a Fahrenheit. Con un ciclo for: 74 ms.",
+        "g2": "Con NumPy: 1.5 ms. ~48 veces más rápido, y en una sola línea."
+      }
+    },
+    {
+      "id": "sello",
+      "pantalla": "Sello 'NUMPY 1D' con los videos 1, 2 y 3; se ilumina el 3 ('Operaciones vectorizadas').",
+      "voz": {
+        "s1": "Esto es Numpy uno de, video tres."
+      },
+      "sub": {
+        "s1": "Esto es Numpy 1D, video 3."
+      },
+      "pausa": 0.4
+    },
+    {
+      "id": "recuerda",
+      "capitulo": "Respuesta del reto",
+      "pantalla": "Tarjeta RESPUESTA DEL RETO: fila 1…10; el corte a[::-3] recorre desde el final saltando de 3 en 3 (flechas) y se iluminan 10, 7, 4 y 1. Abajo: a[::-3] → [10  7  4  1].",
+      "codigo": [
+        "a = np.arange(1, 11)",
+        "a[::-3]      # [10  7  4  1]"
+      ],
+      "voz": {
+        "m1": "La respuesta del reto: a con corte dos puntos, dos puntos, menos tres.",
+        "m2": "El paso negativo recorre desde el final, saltando de tres en tres: diez, siete, cuatro y uno."
+      },
+      "sub": {
+        "m1": "La respuesta del reto: a[::-3].",
+        "m2": "El paso negativo recorre desde el final, saltando de 3 en 3: 10, 7, 4 y 1."
+      }
+    },
+    {
+      "id": "teoria",
+      "capitulo": "¿Qué es vectorizar?",
+      "pantalla": "Three.js: fila de 8 cubos. t1: un 'cabezal' recorre los cubos uno por uno y cada cubo cambia de color al pasar (ciclo for, en Python). t2: todos los cubos cambian de color a la vez (vectorizado), con un destello. Chips arriba: 'for · uno por uno' y 'NumPy · todos a la vez (en C)'. t3: chip 'sin for en tu código'.",
+      "voz": {
+        "t1": "Un ciclo for visita los elementos uno por uno, y en cada vuelta Python hace trabajo extra.",
+        "t2": "Vectorizar es escribir la operación una sola vez para todo el arreglo. NumPy la hace por dentro, en código compilado, con todos los elementos.",
+        "t3": "Tú no escribes el ciclo: escribes la fórmula, como si fuera un solo número."
+      }
+    },
+    {
+      "id": "vectorizadas",
+      "capitulo": "Operaciones vectorizadas",
+      "pantalla": "Split: celda de consola con cada operación y su resultado al lado; a la derecha la fila de precios [10 25 7 40] que se transforma con cada operación (las casillas cambian a la vez). v3: tarjeta '10 - precios' (el escalar puede ir a la izquierda).",
+      "codigo": [
+        "precios = np.array([10, 25, 7, 40])",
+        "precios + 5     # array([15, 30, 12, 45])",
+        "precios - 5     # array([ 5, 20,  2, 35])",
+        "precios * 2     # array([20, 50, 14, 80])",
+        "precios / 2     # array([ 5. , 12.5,  3.5, 20. ])",
+        "10 - precios    # array([  0, -15,   3, -30])"
+      ],
+      "voz": {
+        "v1": "Empecemos con precios. Sumar cinco a un arreglo suma cinco a cada elemento. Igual con la resta y la multiplicación.",
+        "v2": "Ojo con la división: siempre da decimales, aunque el resultado sea exacto. Por eso sale cinco punto, y no cinco.",
+        "v3": "Y el número también puede ir a la izquierda: diez menos precios resta cada precio de diez."
+      },
+      "sub": {
+        "v1": "Empecemos con precios. Sumar 5 a un arreglo suma 5 a cada elemento. Igual con la resta y la multiplicación.",
+        "v2": "Ojo con la división: siempre da decimales, aunque el resultado sea exacto. Por eso sale 5. y no 5.",
+        "v3": "Y el número también puede ir a la izquierda: 10 - precios resta cada precio de 10."
+      },
+      "pausa": 1.2
+    },
+    {
+      "id": "potencias",
+      "capitulo": "Potencias, división entera y residuo",
+      "pantalla": "Celda de consola con x ** 2, x // 3, x % 3 y sus resultados. Derecha: '7 ÷ 3 = 2 y sobra 1' con 7 bolitas agrupadas de 3 en 3 (2 grupos y 1 suelta): // cuenta los grupos, % lo que sobra. w3: ejemplo minutos → horas y minutos. w4: tarjeta Cuidado con -7 // 2 → -4 (redondea hacia abajo) y -7 % 2 → 1.",
+      "codigo": [
+        "x = np.array([7, 8, 9, 10])",
+        "x ** 2      # array([ 49,  64,  81, 100])",
+        "x // 3      # array([2, 2, 3, 3])",
+        "x % 3       # array([1, 2, 0, 1])",
+        "---",
+        "minutos = np.array([75, 130, 45])",
+        "minutos // 60    # array([1, 2, 0])     horas",
+        "minutos % 60     # array([15, 10, 45])  minutos",
+        "---",
+        "np.array([-7]) // 2    # array([-4])",
+        "np.array([-7]) % 2     # array([1])"
+      ],
+      "voz": {
+        "w1": "Doble asterisco eleva a una potencia: x al cuadrado, cada elemento al cuadrado.",
+        "w2": "Doble diagonal es la división entera: cuántas veces cabe completo. Y el porcentaje da el residuo: lo que sobra. Siete entre tres: cabe dos veces y sobra uno.",
+        "w3": "Muy útil: con división entera y residuo entre sesenta, conviertes minutos en horas y minutos, para todo el arreglo.",
+        "w4": "Cuidado con los negativos: la división entera redondea hacia abajo. Menos siete entre dos da menos cuatro, no menos tres."
+      },
+      "sub": {
+        "w1": "** eleva a una potencia: x ** 2, cada elemento al cuadrado.",
+        "w2": "// es la división entera: cuántas veces cabe completo. Y % da el residuo: lo que sobra. 7 entre 3: cabe 2 veces y sobra 1.",
+        "w3": "Muy útil: con // y % entre 60, conviertes minutos en horas y minutos, para todo el arreglo.",
+        "w4": "Cuidado con los negativos: la división entera redondea hacia abajo. -7 // 2 da -4, no -3."
+      },
+      "pausa": 1.2
+    },
+    {
+      "id": "combinar",
+      "capitulo": "Combinar arreglos",
+      "pantalla": "b1–b2 (Three.js): dos filas de cubos (precios y cantidades) se acercan y cada par se une en un cubo del resultado (30, 25, 35), elemento con elemento. Celda: precios * cantidades → [30 25 35] y .sum() → 90. b3: comparación con listas: [1, 2, 3] + [10, 20, 30] → [1, 2, 3, 10, 20, 30] vs arreglos → [11 22 33]. b4: tarjeta Cuidado con el ValueError de formas (3,) y (2,).",
+      "codigo": [
+        "precios = np.array([10, 25, 7])",
+        "cantidades = np.array([3, 1, 5])",
+        "precios * cantidades           # array([30, 25, 35])",
+        "(precios * cantidades).sum()   # 90",
+        "---",
+        "[1, 2, 3] + [10, 20, 30]       # [1, 2, 3, 10, 20, 30]",
+        "a + b                          # array([11, 22, 33])",
+        "---",
+        "np.array([1, 2, 3]) + np.array([1, 2])",
+        "# ValueError: operands could not be broadcast together with shapes (3,) (2,)"
+      ],
+      "voz": {
+        "b1": "También puedes operar dos arreglos entre sí. NumPy empareja los elementos por posición: el primero con el primero, el segundo con el segundo.",
+        "b2": "Precios por cantidades da lo que cuesta cada producto, y con sum, el total de la compra: noventa.",
+        "b3": "Compáralo con las listas: el más las une una detrás de otra. Con arreglos, suma elemento a elemento.",
+        "b4": "La condición: los dos arreglos deben tener el mismo tamaño. Si no, NumPy se queja con un Value Error."
+      },
+      "sub": {
+        "b2": "precios * cantidades da lo que cuesta cada producto, y con sum, el total de la compra: 90.",
+        "b3": "Compáralo con las listas: el + las une una detrás de otra. Con arreglos, suma elemento a elemento.",
+        "b4": "La condición: los dos arreglos deben tener el mismo tamaño. Si no, NumPy se queja con un ValueError."
+      },
+      "pausa": 1.2
+    },
+    {
+      "id": "encadenar",
+      "capitulo": "Encadenar operaciones",
+      "pantalla": "Celda: temps_c * 9 / 5 + 32 con flechas numeradas 1, 2, 3 que muestran el orden (primero *, luego /, al final +). c2: tarjeta Cuidado: temps_c * (9 / 5 + 32) → [726.7 777.4 669.24 848.38] (los paréntesis cambian todo). c3: cadena con métodos (precios * cantidades * 1.16).round(1) → [34.8 29. 40.6] y .sum() → 104.4, cada eslabón se ilumina.",
+      "codigo": [
+        "temps_c = np.array([21.5, 23.0, 19.8, 25.1])",
+        "temps_c * 9 / 5 + 32       # array([70.7 , 73.4 , 67.64, 77.18])",
+        "temps_c * (9 / 5 + 32)     # array([726.7 , 777.4 , 669.24, 848.38])",
+        "---",
+        "(precios * cantidades * 1.16).round(1)         # array([34.8, 29. , 40.6])",
+        "(precios * cantidades * 1.16).round(1).sum()   # 104.4"
+      ],
+      "voz": {
+        "c1": "Puedes encadenar varias operaciones en una sola expresión. NumPy respeta el orden de siempre: primero multiplicaciones y divisiones, al final sumas y restas.",
+        "c2": "Cuidado con los paréntesis: si los pones mal, el cálculo cambia por completo, y NumPy no te avisa.",
+        "c3": "Y puedes seguir la cadena con métodos: el precio con IVA de cada producto, redondeado, y luego la suma total."
+      },
+      "pausa": 1.2
+    },
+    {
+      "id": "funciones",
+      "capitulo": "Funciones matemáticas",
+      "pantalla": "Celda de consola: np.sqrt, np.abs, np.exp y np.log10 con su resultado. Derecha: mini gráfica de la raíz cuadrada que pasa por (1,1), (4,2), (9,3), (16,4). f3: tarjeta Cuidado: math.sqrt(arreglo) → TypeError; usa np.sqrt.",
+      "codigo": [
+        "np.sqrt(np.array([1, 4, 9, 16]))      # array([1., 2., 3., 4.])",
+        "np.abs(np.array([-3, 2, -1]))         # array([3, 2, 1])",
+        "np.exp(np.array([0, 1, 2])).round(2)  # array([1.  , 2.72, 7.39])",
+        "np.log10(np.array([1, 10, 100]))      # array([0., 1., 2.])",
+        "---",
+        "math.sqrt(np.array([1, 4, 9]))        # TypeError"
+      ],
+      "voz": {
+        "f1": "NumPy trae funciones matemáticas que ya vienen vectorizadas: raíz cuadrada, valor absoluto, exponencial, logaritmo.",
+        "f2": "Se llaman funciones universales: reciben un arreglo y devuelven otro, aplicando la función a cada elemento.",
+        "f3": "Cuidado: las funciones del módulo math de Python trabajan con un solo número. Con un arreglo, dan error. Usa siempre las de NumPy."
+      },
+      "pausa": 1.2
+    },
+    {
+      "id": "ejemplos",
+      "capitulo": "Dónde se usa",
+      "pantalla": "Tres tarjetas que entran una por frase (espacio reservado). 1 INDUSTRIA: total por producto con IVA: (precios * cantidades * 1.16).round(2) → [34.8 29. 40.6]. 2 CIENCIA: café que se enfría: 20 + 70 * np.exp(-0.1 * t) con t = [0 5 10 20] → [90. 62.5 45.8 29.5] °C y una mini curva que baja. 3 DÍA A DÍA: tiempos de tus carreras: segundos // 60 y % 60 → 1:35, 2:10, 4:05. Nota: ejemplos simplificados.",
+      "codigo": [
+        "(precios * cantidades * 1.16).round(2)     # [34.8 29.  40.6]",
+        "---",
+        "t = np.array([0, 5, 10, 20])               # minutos",
+        "(20 + 70 * np.exp(-0.1 * t)).round(1)      # [90.  62.5 45.8 29.5]",
+        "---",
+        "segundos = np.array([95, 130, 245])",
+        "segundos // 60, segundos % 60              # [1 2 4] [35 10  5]"
+      ],
+      "voz": {
+        "e1": "En un comercio: precio por cantidad por uno punto dieciséis, y tienes el total con IVA de cada producto en una línea.",
+        "e2": "En la ciencia: la temperatura de un café que se enfría sigue una exponencial. Con n p punto exp calculas todos los instantes a la vez.",
+        "e3": "Y en tu día a día: tus tiempos de carrera en segundos. Con división entera y residuo, los pasas a minutos y segundos."
+      },
+      "sub": {
+        "e1": "En un comercio: precio × cantidad × 1.16, y tienes el total con IVA de cada producto en una línea.",
+        "e2": "En la ciencia: la temperatura de un café que se enfría sigue una exponencial. Con np.exp calculas todos los instantes a la vez.",
+        "e3": "Y en tu día a día: tus tiempos de carrera en segundos. Con // y %, los pasas a minutos y segundos."
+      },
+      "pausa": 1.2
+    },
+    {
+      "id": "plus",
+      "capitulo": "Plus: Ciencia de Datos",
+      "pantalla": "Chip PLUS · CIENCIA DE DATOS. Estaturas [150 160 170 180 190]. q1–q2: normalización min-max en una línea → [0. 0.25 0.5 0.75 1.] con las casillas que se 'aplastan' a la escala 0–1. q3: estandarización (x - media) / desviación → [-1.41 -0.71 0. 0.71 1.41].",
+      "codigo": [
+        "alt = np.array([150, 160, 170, 180, 190])",
+        "(alt - alt.min()) / (alt.max() - alt.min())   # [0.   0.25 0.5  0.75 1.  ]",
+        "((alt - alt.mean()) / alt.std()).round(2)     # [-1.41 -0.71  0.    0.71  1.41]"
+      ],
+      "voz": {
+        "q1": "Plus de ciencia de datos: antes de entrenar un modelo, los datos se ponen en la misma escala.",
+        "q2": "Con operaciones vectorizadas encadenadas, la normalización es una línea: restas el mínimo y divides entre el rango. Todo queda entre cero y uno.",
+        "q3": "O la estandarización: restas la media y divides entre la desviación estándar. Así trabajan por dentro los escaladores de scikit-learn."
+      },
+      "sub": {
+        "q2": "Con operaciones vectorizadas encadenadas, la normalización es una línea: restas el mínimo y divides entre el rango. Todo queda entre 0 y 1."
+      }
+    },
+    {
+      "id": "reto",
+      "capitulo": "Reto y resumen",
+      "pantalla": "Reto con la fila del 1 al 10 y la pista '% 2 vale 1 en los impares y 0 en los pares'; sticker 'Resuélvelo en el notebook de Colab · link en la descripción'. Luego 3 tarjetas de resumen.",
+      "codigo": [
+        "a = np.arange(1, 11)",
+        "# suma de los cuadrados de los impares, en UNA línea y sin for",
+        "# pista: a % 2 → [1 0 1 0 ...]"
+      ],
+      "voz": {
+        "r1": "Tu reto: con los números del uno al diez, suma los cuadrados solo de los impares, en una sola línea y sin for.",
+        "r2": "Pista: el residuo entre dos vale uno en los impares y cero en los pares. Escribe tu resultado en los comentarios.",
+        "r3": "En resumen: una operación con un arreglo se aplica a cada elemento; dos arreglos del mismo tamaño se combinan elemento a elemento; y las funciones de NumPy ya vienen vectorizadas."
+      },
+      "sub": {
+        "r1": "Tu reto: con los números del 1 al 10, suma los cuadrados solo de los impares, en una sola línea y sin for.",
+        "r2": "Pista: a % 2 vale 1 en los impares y 0 en los pares. Escribe tu resultado en los comentarios."
+      }
+    },
+    {
+      "id": "cierre",
+      "capitulo": "Cierre",
+      "pantalla": "Próximo video de la serie (pendiente: lo define el dueño) con AvisoNotebook abajo; luego el cierre estándar con la mitad derecha libre para la pantalla final.",
+      "voz": {
+        "z1": "En el próximo video de Numpy uno de seguimos con los arreglos. Te espero.",
+        "z2": "¿Te sirvió? Ve más videos en Universo Ciencia de Datos, y suscríbete."
+      },
+      "sub": {
+        "z1": "En el próximo video de Numpy 1D seguimos con los arreglos. Te espero."
+      },
+      "min": 14
+    }
+  ]
+}

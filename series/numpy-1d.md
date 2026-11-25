@@ -18,9 +18,10 @@ que son la base de pandas, Matplotlib y scikit-learn. Cada video sigue el conten
 ## Videos
 | # | Título | Palabra clave | Notebook | Estado |
 |---|---|---|---|---|
-| 1 | De listas a arreglos \| Numpy 1D | numpy arreglos / numpy array | `01-listas-a-arreglos.ipynb` | renderizado · por publicar |
+| 1 | De listas a arreglos \| Numpy 1D | numpy arreglos / numpy array | `01-listas-a-arreglos.ipynb` | renderizado · notebook en main · por publicar |
 | 2 | Índices y cortes en NumPy \| Numpy 1D | numpy índices / slicing numpy | `02-indices-y-cortes.ipynb` | renderizado · por publicar |
-| 3 | (el dueño define el contenido) | | | |
+| 3 | Operaciones vectorizadas en NumPy \| Numpy 1D | operaciones vectorizadas numpy | `03-operaciones-vectorizadas.ipynb` | guion por aprobar |
+| 4 | (el dueño define el contenido) | | | |
 
 ## Video 1 · De listas a arreglos
 Guion: `src/guiones/n01-listas-arreglos.json` (aprobado). Video: `src/videos/N01ListasArreglos.tsx` → 5:18. Título elegido: «De listas a arreglos | Numpy 1D».
@@ -78,6 +79,29 @@ Guion: `src/guiones/n02-indices-cortes.json` (aprobado). Video: `src/videos/N02I
 
 **Miniatura:** casillas `10 [0 30 40] 50` con el corte `[1:4]` marcado y el `0` en coral + "¡CAMBIÓ EL ORIGINAL!"
 (3 palabras; la trampa del gancho, que el video explica en «Modificar con cortes»).
+
+## Video 3 · Operaciones vectorizadas (Vectorized Operations)
+Guion: `src/guiones/n03-vectorizadas.json` (por aprobar). Duración estimada ~4:30–5:20.
+
+| Contenido del dueño | Capítulo | Qué se ve |
+|---|---|---|
+| (gancho) | Adiós al for | 1,000,000 °C → °F: for 73.7 ms vs NumPy 1.54 ms (~48×), una sola línea |
+| (reto del video 2) | Respuesta del reto | `a[::-3]` → `[10 7 4 1]` |
+| (teoría) | ¿Qué es vectorizar? | **Three.js:** cabezal que recorre cubo por cubo (for) vs todos a la vez (NumPy) |
+| 1. Vectorized Array Operations | Operaciones vectorizadas | `+ - * /` con un número; `/` siempre da decimales; `10 - precios` |
+| 2. Powers, Floor Division, and Remainders | Potencias, división entera y residuo | `**`, `//`, `%`; minutos → horas; cuidado: `-7 // 2` = -4 |
+| 3. Combining Arrays Elementwise | Combinar arreglos | **Three.js:** precios × cantidades par a par; listas vs arreglos; ValueError de formas |
+| 4. Chaining NumPy Operations | Encadenar operaciones | Orden de operaciones, paréntesis mal puestos (cuidado), cadena con `.round().sum()` |
+| 5. Vectorized Math Functions | Funciones matemáticas | `np.sqrt`, `np.abs`, `np.exp`, `np.log10`; cuidado: `math.sqrt` con arreglo → TypeError |
+| (3 ejemplos) | Dónde se usa | Comercio: total con IVA · Ciencia: café que se enfría (exp) · Día a día: tiempos de carrera (// y %) |
+| (plus) | Plus: Ciencia de Datos | Normalización min-max y estandarización en una línea (escaladores de scikit-learn) |
+| (reto) | Reto y resumen | Suma de los cuadrados de los impares del 1 al 10 sin for (respuesta: 165) |
+
+**Títulos (≤ 60):** 1. Operaciones vectorizadas en NumPy | Numpy 1D (44) · 2. Adiós al ciclo for: vectoriza con NumPy | Numpy 1D (50) ·
+3. Calcula sin ciclos for con NumPy | Numpy 1D (43).
+
+**Miniatura (propuesta, ligada al título):** comparación medida: «CICLO FOR 74 ms» en rojo → «NUMPY 1.5 ms» en verde, con
+«1 MILLÓN DE CÁLCULOS» arriba (el dato del gancho, que el video muestra en los primeros segundos).
 
 ## Cómo se enlazan
 - **Pantalla final:** siguiente video + lista de reproducción (prevista en `Cierre`).

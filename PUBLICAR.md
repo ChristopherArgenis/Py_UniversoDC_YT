@@ -43,7 +43,7 @@ Plantilla por video:
 **Plantilla:** A (6 bloques Concepto → Código)
 **Video:** `out/N01-ListasArreglos.mp4` (5:18, 1920×1080)
 **Miniatura:** `Mini-N01-ListasArreglos` → "1 MILLÓN DE NÚMEROS": LISTA [1, 2, 3] 36 MB (rojo) → NUMPY [1 2 3] 8 MB (verde). Dato del video (01:24).
-**Notebook:** Notebook/Numpy-1D/01-listas-a-arreglos.ipynb (¿en main? **NO todavía: hacer merge antes de publicar**)
+**Notebook:** Notebook/Numpy-1D/01-listas-a-arreglos.ipynb (¿en main? **sí**: el link de Colab funciona)
 **Descripción:** `videos/n01-listas-arreglos/descripcion.txt`
 
 **Descripción:**
