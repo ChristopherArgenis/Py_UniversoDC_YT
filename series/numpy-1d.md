@@ -21,7 +21,8 @@ que son la base de pandas, Matplotlib y scikit-learn. Cada video sigue el conten
 | 1 | De listas a arreglos \| Numpy 1D | numpy arreglos / numpy array | `01-listas-a-arreglos.ipynb` | renderizado · notebook en main · por publicar |
 | 2 | Índices y cortes en NumPy \| Numpy 1D | numpy índices / slicing numpy | `02-indices-y-cortes.ipynb` | renderizado · por publicar |
 | 3 | Operaciones vectorizadas en NumPy \| Numpy 1D | operaciones vectorizadas numpy | `03-operaciones-vectorizadas.ipynb` | renderizado · por publicar |
-| 4 | (el dueño define el contenido) | | | |
+| 4 | Máscaras booleanas en NumPy \| Numpy 1D | máscaras booleanas numpy / filtrar numpy | `04-mascaras-booleanas.ipynb` | guion por aprobar |
+| 5 | (el dueño define el contenido) | | | |
 
 ## Video 1 · De listas a arreglos
 Guion: `src/guiones/n01-listas-arreglos.json` (aprobado). Video: `src/videos/N01ListasArreglos.tsx` → 5:18. Título elegido: «De listas a arreglos | Numpy 1D».
@@ -101,6 +102,28 @@ Guion: `src/guiones/n03-vectorizadas.json` (aprobado). Video: `src/videos/N03Vec
 3. Calcula sin ciclos for con NumPy | Numpy 1D (43).
 
 **Miniatura:** «×1,000,000» arriba; «CICLO FOR 74 ms» en rojo → «NUMPY 1.5 ms» en verde (3 palabras; el dato del gancho).
+
+## Video 4 · Máscaras booleanas (Boolean Arrays and Masks)
+Guion: `src/guiones/n04-mascaras.json` (por aprobar). Duración estimada ~4:20–4:50.
+
+| Contenido del dueño | Capítulo | Qué se ve |
+|---|---|---|
+| (gancho) | Tres preguntas | Año simulado de 365 días: ¿cuántos > 30 °C? 24 · promedio 31.9 · ¿cuáles? (3 líneas, sin for) |
+| (reto del video 3) | Respuesta del reto | 165, y la versión con máscara `(a[a % 2 == 1] ** 2).sum()` |
+| (teoría) | ¿Qué es una máscara? | **Three.js:** plantilla con huecos (True) por donde suben los cubos |
+| 1. Creating Boolean Masks with Comparisons | Crear máscaras | `>`, `==`, `&`, `|`, `~` con paréntesis; cuidado: `and` → ValueError |
+| 2. Filtering Arrays with Boolean Masks | Filtrar con máscaras | `temps[temps > 30]`, filtros combinados, la misma máscara sobre los días; es copia |
+| 3. Reducing Masks to Answers | Reducir a respuestas | `.sum()` cuenta, `.mean()` proporción, `.any()`, `.all()`, `np.nonzero` |
+| 4. Updating Values with Masks | Cambiar con máscaras | `t[t > 30] = 30` (modifica) vs `np.where` (arreglo nuevo) |
+| (3 ejemplos) | Dónde se usa | Fábrica: piezas fuera de tolerancia · Laboratorio: lecturas válidas · Día a día: gastos grandes |
+| (plus) | Plus: Ciencia de Datos | `df[df["edad"] >= 18]` en pandas y accuracy = `(y_pred == y_real).mean()` → 0.8 |
+| (reto) | Reto y resumen | ¿Cuántos del 1 al 50 son múltiplos de 3 o de 5? (respuesta: 23) |
+
+**Títulos (≤ 60):** 1. Máscaras booleanas en NumPy | Numpy 1D (38) · 2. Filtra datos sin for: máscaras de NumPy | Numpy 1D (50) ·
+3. Arreglos booleanos y máscaras | Numpy 1D (40).
+
+**Miniatura (propuesta, ligada al título):** las 365 barras del año con solo las de más de 30 °C encendidas en coral y
+«24 DÍAS > 30 °C» (el filtro hecho visible; es el gancho del video).
 
 ## Cómo se enlazan
 - **Pantalla final:** siguiente video + lista de reproducción (prevista en `Cierre`).

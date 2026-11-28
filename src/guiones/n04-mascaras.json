@@ -1,0 +1,254 @@
+{
+  "_nota": "Numpy 1D · Video 4. Plantilla A con 4 bloques (Concepto → Código) en el orden que dio el dueño, más la respuesta del reto del video 3. Salidas verificadas con NumPy 2.5.3. El año de temperaturas del gancho es simulado (np.random.default_rng(7)).",
+  "id": "n04-mascaras",
+  "titulo": "Máscaras booleanas en NumPy | Numpy 1D",
+  "serie": "Numpy 1D",
+  "plantilla": "A",
+  "notebook": "Notebook/Numpy-1D/04-mascaras-booleanas.ipynb",
+  "aprobado": false,
+  "musica": "musica/explica.wav",
+  "voz": "alex_nicola",
+  "acento": "#5b8cff",
+  "subtitulos": true,
+  "escenas": [
+    {
+      "id": "gancho",
+      "capitulo": "Tres preguntas",
+      "pantalla": "Cuadro 0 lleno: gráfica de 365 barras (un año de temperaturas) con una línea punteada en 30 °C. g1: las barras que pasan de 30 se pintan de coral. g2: tres preguntas con su respuesta y su línea: ¿cuántos días? (temps > 30).sum() → 24 · ¿promedio de esos días? temps[temps > 30].mean() → 31.9 · ¿cuáles? np.nonzero(temps > 30). g3: abajo 'Máscaras booleanas' (espacio reservado). Nota: Ejemplo simplificado (año simulado).",
+      "codigo": [
+        "anio = np.random.default_rng(7).normal(22, 6, 365).round(1)",
+        "(anio > 30).sum()             # 24",
+        "anio[anio > 30].mean()        # 31.9",
+        "np.nonzero(anio > 30)[0]      # posiciones de esos días"
+      ],
+      "voz": {
+        "g1": "Un año de temperaturas: trescientos sesenta y cinco días. ¿Cuántos pasaron de treinta grados?",
+        "g2": "¿Cuál fue su promedio? ¿Y qué días fueron? Tres preguntas, tres líneas, sin un solo for.",
+        "g3": "El truco se llama máscara booleana, y hoy la dominas."
+      },
+      "sub": {
+        "g1": "Un año de temperaturas: 365 días. ¿Cuántos pasaron de 30 °C?"
+      }
+    },
+    {
+      "id": "sello",
+      "pantalla": "Sello 'NUMPY 1D' con los videos 1 a 4; se ilumina el 4 ('Máscaras booleanas').",
+      "voz": {
+        "s1": "Esto es Numpy uno de, video cuatro."
+      },
+      "sub": {
+        "s1": "Esto es Numpy 1D, video 4."
+      },
+      "pausa": 0.4
+    },
+    {
+      "id": "recuerda",
+      "capitulo": "Respuesta del reto",
+      "pantalla": "Tarjeta RESPUESTA DEL RETO: (a ** 2 * (a % 2)).sum() → 165, con la fila de cuadrados [1 0 9 0 25 0 49 0 81 0]. m2: aparece la versión con máscara a[a % 2 == 1] → [1 3 5 7 9] y (a[a % 2 == 1] ** 2).sum() → 165, con chip 'lo que aprendes hoy'.",
+      "codigo": [
+        "(a ** 2 * (a % 2)).sum()          # 165",
+        "---",
+        "a[a % 2 == 1]                     # [1 3 5 7 9]",
+        "(a[a % 2 == 1] ** 2).sum()        # 165"
+      ],
+      "voz": {
+        "m1": "La respuesta del reto: ciento sesenta y cinco. El residuo entre dos apagaba los pares, y solo sumabas los cuadrados de los impares.",
+        "m2": "Hoy vas a aprender una forma más clara de hacerlo: quedarte solo con los impares, y luego elevar y sumar."
+      },
+      "sub": {
+        "m1": "La respuesta del reto: 165. El residuo entre 2 apagaba los pares, y solo sumabas los cuadrados de los impares."
+      }
+    },
+    {
+      "id": "teoria",
+      "capitulo": "¿Qué es una máscara?",
+      "pantalla": "Three.js: fila de 7 cubos (temperaturas) y encima una 'plantilla' de 7 placas: las True son huecos verdes, las False son placas sólidas grises. t2: los cubos bajo un hueco suben y atraviesan la plantilla; los demás se quedan. Chips: 'máscara = True / False del mismo tamaño' y 'solo pasan los True'.",
+      "voz": {
+        "t1": "Una máscara booleana es un arreglo de verdaderos y falsos, del mismo tamaño que tus datos.",
+        "t2": "Funciona como una plantilla con huecos: donde hay verdadero, el dato pasa; donde hay falso, se queda afuera.",
+        "t3": "Con ella puedes contar, filtrar y cambiar datos, sin escribir ni un for."
+      }
+    },
+    {
+      "id": "crear",
+      "capitulo": "Crear máscaras",
+      "pantalla": "Split: celda de consola con cada comparación y su resultado; a la derecha las temperaturas de la semana y debajo la máscara como casillas verdes (True) y grises (False), que cambian con cada línea. k3: & (y), | (o) y ~ (no), cada uno con su máscara. k4: tarjeta Cuidado con 'and' → ValueError y la regla: & | ~ y paréntesis.",
+      "codigo": [
+        "temps = np.array([21, 33, 19, 35, 28, 31, 24])",
+        "temps > 30      # [False  True False  True False  True False]",
+        "temps == 24     # [False False False False False False  True]",
+        "---",
+        "(temps > 20) & (temps < 30)   # [ True False False False  True False  True]",
+        "(temps < 20) | (temps > 33)   # [False False  True  True False False False]",
+        "~(temps > 30)                 # [ True False  True False  True False  True]",
+        "---",
+        "(temps > 20) and (temps < 30)",
+        "# ValueError: The truth value of an array with more than one element is ambiguous"
+      ],
+      "voz": {
+        "k1": "Una comparación con un arreglo no da un solo verdadero o falso: da uno por cada elemento. Eso ya es una máscara.",
+        "k2": "Funcionan todos los comparadores: mayor, menor, igual, distinto.",
+        "k3": "Para combinar condiciones usas ampersand para y, la barra vertical para o, y la tilde para no. Siempre con cada condición entre paréntesis.",
+        "k4": "Cuidado: and y or de Python no sirven con arreglos. NumPy no sabe si quieres que todos o alguno sea verdadero, y lanza un Value Error."
+      },
+      "sub": {
+        "k3": "Para combinar condiciones usas & para «y», | para «o», y ~ para «no». Siempre con cada condición entre paréntesis.",
+        "k4": "Cuidado: and y or de Python no sirven con arreglos. NumPy no sabe si quieres que todos o alguno sea True, y lanza un ValueError."
+      },
+      "pausa": 1.2
+    },
+    {
+      "id": "filtrar",
+      "capitulo": "Filtrar con máscaras",
+      "pantalla": "Split: celda; a la derecha la fila de temperaturas con la máscara encima y una fila nueva abajo donde 'caen' solo los elementos True ([33 35 31]). f2: filtro combinado → [21 28 24]. f3: la misma máscara sobre los nombres de los días → ['mar' 'jue' 'sáb']. f4: chip 'COPIA': el resultado es un arreglo nuevo, como en el video 2.",
+      "codigo": [
+        "temps[temps > 30]                  # [33 35 31]",
+        "calor = temps > 30",
+        "temps[calor]                       # [33 35 31]",
+        "temps[(temps > 20) & (temps < 30)] # [21 28 24]",
+        "---",
+        "dias = np.array([\"lun\", \"mar\", \"mié\", \"jue\", \"vie\", \"sáb\", \"dom\"])",
+        "dias[calor]                        # ['mar' 'jue' 'sáb']"
+      ],
+      "voz": {
+        "f1": "Para filtrar, metes la máscara entre corchetes. Temps de temps mayor que treinta te da solo los días de calor.",
+        "f2": "Puedes guardar la máscara con un nombre, y combinarla como quieras: aquí, los días entre veinte y treinta grados.",
+        "f3": "Y la misma máscara sirve para otro arreglo del mismo tamaño: con ella sacas qué días de la semana hizo calor.",
+        "f4": "Igual que con una lista de posiciones, el resultado es una copia nueva: el arreglo original no cambia."
+      },
+      "sub": {
+        "f1": "Para filtrar, metes la máscara entre corchetes. temps[temps > 30] te da solo los días de calor.",
+        "f2": "Puedes guardar la máscara con un nombre, y combinarla como quieras: aquí, los días entre 20 y 30 grados."
+      },
+      "pausa": 1.2
+    },
+    {
+      "id": "reducir",
+      "capitulo": "Reducir a respuestas",
+      "pantalla": "Split: celda con .sum(), .mean(), .any(), .all() y np.nonzero y sus resultados; a la derecha la máscara [F T F T F T F] convertida a 0 y 1: d1 los 1 se suman → 3; d2 el promedio → 0.43 = 43 % con una barra de porcentaje; d3 dos focos ANY (✓) y ALL (✗); d4 las posiciones [1 3 5] marcadas.",
+      "codigo": [
+        "calor.sum()              # 3      ¿cuántos?",
+        "calor.mean().round(2)    # 0.43   ¿qué proporción?",
+        "calor.any()              # True   ¿alguno?",
+        "calor.all()              # False  ¿todos?",
+        "np.nonzero(calor)[0]     # [1 3 5] ¿dónde?"
+      ],
+      "voz": {
+        "d1": "Lo mejor: True vale uno y False vale cero. Así, sumar una máscara cuenta cuántos cumplen la condición: tres días de calor.",
+        "d2": "Y su promedio es la proporción: cero punto cuarenta y tres, o sea, el cuarenta y tres por ciento de la semana.",
+        "d3": "Any responde si al menos uno cumple; all, si todos cumplen.",
+        "d4": "Y n p punto nonzero te dice en qué posiciones está cada verdadero."
+      },
+      "sub": {
+        "d2": "Y su promedio es la proporción: 0.43, o sea, el 43 % de la semana.",
+        "d3": "any() responde si al menos uno cumple; all(), si todos cumplen.",
+        "d4": "Y np.nonzero te dice en qué posiciones está cada True."
+      },
+      "pausa": 1.2
+    },
+    {
+      "id": "actualizar",
+      "capitulo": "Cambiar con máscaras",
+      "pantalla": "Split: celda; a la derecha la fila de temperaturas: u1 las casillas True (33, 35, 31) se convierten en 30 en el original (coral, 'tope de 30'). u2: np.where con dos ramas: fila nueva con 'calor' / 'ok' por casilla. u3: chip 'np.where crea un arreglo nuevo: temps no cambia'.",
+      "codigo": [
+        "t = temps.copy()",
+        "t[t > 30] = 30",
+        "print(t)          # [21 30 19 30 28 30 24]",
+        "---",
+        "np.where(temps > 30, \"calor\", \"ok\")",
+        "# ['ok' 'calor' 'ok' 'calor' 'ok' 'calor' 'ok']",
+        "np.where(temps > 30, 30, temps)   # [21 30 19 30 28 30 24]"
+      ],
+      "voz": {
+        "u1": "Para cambiar valores, asignas a la máscara: todo lo que pase de treinta, se queda en treinta. Esto sí modifica el arreglo.",
+        "u2": "Si prefieres no tocar el original, n p punto where elige por casilla: si se cumple la condición, un valor; si no, otro.",
+        "u3": "Where devuelve un arreglo nuevo, así que tus datos originales quedan intactos."
+      },
+      "sub": {
+        "u1": "Para cambiar valores, asignas a la máscara: todo lo que pase de 30, se queda en 30. Esto sí modifica el arreglo.",
+        "u2": "Si prefieres no tocar el original, np.where elige por casilla: si se cumple la condición, un valor; si no, otro.",
+        "u3": "where devuelve un arreglo nuevo, así que tus datos originales quedan intactos."
+      },
+      "pausa": 1.2
+    },
+    {
+      "id": "ejemplos",
+      "capitulo": "Dónde se usa",
+      "pantalla": "Tres tarjetas que entran una por frase (espacio reservado). 1 INDUSTRIA: pesos de piezas (meta 50 ± 0.5 g); malas = (pesos < 49.5) | (pesos > 50.5) → 3 piezas, 37.5 %. 2 CIENCIA: lecturas de un sensor con valores imposibles; medidas[(medidas >= 0) & (medidas <= 100)] → 5 válidas, promedio 53.58. 3 DÍA A DÍA: gastos del mes: (gastos > 500).sum() → 3 gastos grandes, que suman 2650. Nota: ejemplos simplificados.",
+      "codigo": [
+        "pesos = np.array([50.1, 49.2, 50.0, 50.7, 49.9, 50.3, 48.9, 50.2])",
+        "malas = (pesos < 49.5) | (pesos > 50.5)",
+        "malas.sum(), malas.mean() * 100     # 3, 37.5",
+        "---",
+        "medidas = np.array([12.5, -3.0, 45.2, 101.7, 67.8, 88.1, -0.5, 54.3])",
+        "ok = (medidas >= 0) & (medidas <= 100)",
+        "medidas[ok].mean().round(2)         # 53.58",
+        "---",
+        "gastos = np.array([120, 850, 45, 600, 300, 1200, 75])",
+        "(gastos > 500).sum(), gastos[gastos > 500].sum()   # 3, 2650"
+      ],
+      "voz": {
+        "e1": "En una fábrica: las piezas deben pesar cincuenta gramos, más o menos medio gramo. Una máscara encuentra las defectuosas: tres de ocho, el treinta y siete punto cinco por ciento.",
+        "e2": "En un laboratorio: un sensor de cero a cien marcó valores imposibles. Te quedas solo con las lecturas válidas antes de promediar.",
+        "e3": "Y en tu día a día: ¿cuántos gastos del mes pasaron de quinientos pesos, y cuánto sumaron? Dos líneas."
+      },
+      "sub": {
+        "e1": "En una fábrica: las piezas deben pesar 50 g ± 0.5 g. Una máscara encuentra las defectuosas: 3 de 8, el 37.5 %.",
+        "e2": "En un laboratorio: un sensor de 0 a 100 marcó valores imposibles. Te quedas solo con las lecturas válidas antes de promediar.",
+        "e3": "Y en tu día a día: ¿cuántos gastos del mes pasaron de $500, y cuánto sumaron? Dos líneas."
+      },
+      "pausa": 1.2
+    },
+    {
+      "id": "plus",
+      "capitulo": "Plus: Ciencia de Datos",
+      "pantalla": "Chip PLUS · CIENCIA DE DATOS. q1: tabla de pandas con nombre y edad; df[df['edad'] >= 18] resalta Luis e Iván, y abajo la máscara [False True False True]. q2–q3: predicciones de un modelo vs valores reales (10 casillas cada uno); la máscara y_pred == y_real con 8 verdes y 2 coral; su promedio 0.8 → 'accuracy 80 %'.",
+      "codigo": [
+        "df[df[\"edad\"] >= 18]          # Luis (22) e Iván (30)",
+        "---",
+        "y_real = np.array([1, 0, 1, 1, 0, 1, 0, 0, 1, 1])",
+        "y_pred = np.array([1, 0, 0, 1, 0, 1, 1, 0, 1, 1])",
+        "(y_pred == y_real).mean()      # 0.8"
+      ],
+      "voz": {
+        "q1": "Plus de ciencia de datos: en pandas, filtrar una tabla es exactamente esto. La condición sobre una columna es una máscara.",
+        "q2": "Y cuando evalúas un modelo, comparas sus predicciones con los valores reales: otra máscara.",
+        "q3": "Su promedio es la exactitud, la famosa accuracy: aquí, ochenta por ciento. Una línea."
+      },
+      "sub": {
+        "q3": "Su promedio es la exactitud, la famosa accuracy: aquí, 80 %. Una línea."
+      }
+    },
+    {
+      "id": "reto",
+      "capitulo": "Reto y resumen",
+      "pantalla": "Reto con la fila del 1 al 50 (casillas pequeñas) y la pregunta; sticker 'Resuélvelo en el notebook de Colab · link en la descripción'. Luego 3 tarjetas de resumen.",
+      "codigo": [
+        "n = np.arange(1, 51)",
+        "# ¿cuántos son múltiplos de 3 o de 5? Una línea, con máscaras"
+      ],
+      "voz": {
+        "r1": "Tu reto: con los números del uno al cincuenta, ¿cuántos son múltiplos de tres o de cinco? En una sola línea, con máscaras.",
+        "r2": "Pista: un múltiplo de tres tiene residuo cero entre tres. Escribe tu resultado en los comentarios.",
+        "r3": "En resumen: una comparación crea una máscara; entre corchetes, la máscara filtra; y al sumarla o promediarla, cuentas y mides sin un solo for."
+      },
+      "sub": {
+        "r1": "Tu reto: con los números del 1 al 50, ¿cuántos son múltiplos de 3 o de 5? En una sola línea, con máscaras.",
+        "r2": "Pista: un múltiplo de 3 tiene residuo 0 entre 3. Escribe tu resultado en los comentarios."
+      }
+    },
+    {
+      "id": "cierre",
+      "capitulo": "Cierre",
+      "pantalla": "Próximo video de la serie (pendiente: lo define el dueño) con AvisoNotebook abajo; luego el cierre estándar con la mitad derecha libre para la pantalla final.",
+      "voz": {
+        "z1": "En el próximo video de Numpy uno de seguimos con los arreglos. Te espero.",
+        "z2": "¿Te sirvió? Ve más videos en Universo Ciencia de Datos, y suscríbete."
+      },
+      "sub": {
+        "z1": "En el próximo video de Numpy 1D seguimos con los arreglos. Te espero."
+      },
+      "min": 14
+    }
+  ]
+}
